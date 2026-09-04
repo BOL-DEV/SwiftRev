@@ -1,168 +1,174 @@
 import React, { useState } from 'react';
 import { motion } from 'framer-motion';
-import { Mail, Phone, MapPin, Send, ArrowRight } from 'lucide-react';
-import { Input } from '@/components/ui/input';
-import { Textarea } from '@/components/ui/textarea';
-import { Button } from '@/components/ui/button';
-import { Select, SelectContent, SelectItem, SelectTrigger, SelectValue } from '@/components/ui/select';
-import GlassCard from '../components/shared/GlassCard';
-import PulseIndicator from '../components/shared/PulseIndicator';
+import { Mail, Phone, MapPin, Send, CheckCircle2, ShieldCheck } from 'lucide-react';
 import { toast } from 'sonner';
 
 const contactInfo = [
-  { icon: Mail, label: 'Email', value: 'me@swiftrevenue.me', color: 'mint' },
-  { icon: Phone, label: 'Phone', value: '+234 916 048 2233', color: 'mint' },
-  { icon: MapPin, label: 'Address', value: '7 Prince Ajadi Olasunkanmi St, Lafewa, Ogun State', color: 'copper' },
+  { icon: Mail, label: 'Official Email', value: 'me@swiftrevenue.me' },
+  { icon: Phone, label: 'Direct Line', value: '+234 916 048 2233' },
+  { icon: MapPin, label: 'Corporate Office', value: '7 Prince Ajadi Olasunkanmi St, Lafenwa, Ogun State, Nigeria' },
 ];
 
 export default function Contact() {
-  const [form, setForm] = useState({ name: '', email: '', interest: '', message: '' });
-  const [sending, setSending] = useState(false);
+  const [form, setForm] = useState({ name: '', email: '', phone: '', solution: 'hrms', message: '' });
+  const [submitting, setSubmitting] = useState(false);
+  const [submitted, setSubmitted] = useState(false);
 
-  const handleSubmit = async (e) => {
+  const handleSubmit = (e) => {
     e.preventDefault();
-    setSending(true);
-    // Simulate submission
-    await new Promise(r => setTimeout(r, 1500));
-    toast.success('Message sent! We\'ll get back to you shortly.');
-    setForm({ name: '', email: '', interest: '', message: '' });
-    setSending(false);
+    setSubmitting(true);
+    setTimeout(() => {
+      setSubmitting(false);
+      setSubmitted(true);
+      toast.success('Your message has been received! A SwiftRev representative will follow up promptly.');
+    }, 1000);
   };
 
   return (
-    <div className="pt-20">
-      <section className="relative py-24 md:py-32 overflow-hidden">
-        <div className="absolute inset-0 bg-obsidian">
-          <div className="absolute top-0 left-1/4 w-[500px] h-[500px] bg-mint/3 rounded-full blur-[150px]" />
-          <div className="absolute bottom-0 right-1/4 w-[400px] h-[400px] bg-copper/3 rounded-full blur-[150px]" />
+    <div className="pt-24 min-h-screen">
+      <section className="py-16 md:py-24 max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
+        <div className="text-center max-w-3xl mx-auto mb-16">
+          <span className="inline-flex items-center gap-1.5 px-3.5 py-1 rounded-full text-xs font-heading font-semibold uppercase tracking-wider bg-pine/10 text-pine dark:text-teal-300 border border-pine/20 mb-4">
+            Connect With Us
+          </span>
+          <h1 className="text-4xl md:text-5xl font-heading font-extrabold text-foreground tracking-tight">
+            Let's Talk About Your Operations
+          </h1>
+          <p className="mt-4 text-base text-muted-foreground font-body">
+            Whether you need to onboard a hospital onto HRMS or discuss fintech and proptech partnerships, our team is here.
+          </p>
         </div>
 
-        <div className="max-w-7xl mx-auto px-6 lg:px-8 relative z-10">
-          <div className="text-center mb-16">
-            <motion.div initial={{ opacity: 0, y: 30 }} animate={{ opacity: 1, y: 0 }} transition={{ duration: 0.7 }}>
-              <span className="inline-flex items-center gap-2 px-4 py-2 rounded-full glass-card text-xs font-heading font-semibold tracking-wider uppercase text-mint mb-6">
-                <PulseIndicator color="mint" size="sm" />
-                Get in Touch
-              </span>
-              <h1 className="font-heading font-extrabold text-4xl md:text-5xl lg:text-6xl text-limestone leading-[0.95] mb-6" style={{ letterSpacing: '-0.04em' }}>
-                Let's Build Your{' '}
-                <span className="text-mint">Future</span>
-              </h1>
-              <p className="text-muted-foreground text-lg max-w-2xl mx-auto font-body leading-relaxed">
-                Whether you're interested in medical finance or agent-free housing, we're ready to help.
+        <div className="grid lg:grid-cols-12 gap-12">
+          {/* Left Info (5 cols) */}
+          <div className="lg:col-span-5 space-y-6">
+            <div className="rounded-3xl p-8 bg-card border border-border shadow-sm space-y-6">
+              <h2 className="text-xl font-heading font-bold text-foreground">SwiftRev Technology Limited</h2>
+              <p className="text-xs text-muted-foreground leading-relaxed font-body">
+                We work directly with Chief Medical Directors, hospital boards, financial institutions, and partners across Nigeria.
               </p>
-            </motion.div>
-          </div>
 
-          <div className="grid lg:grid-cols-5 gap-8">
-            {/* Contact Info */}
-            <div className="lg:col-span-2 space-y-6">
-              {contactInfo.map((c, i) => (
-                <GlassCard key={c.label} delay={i * 0.1}>
-                  <div className="flex items-center gap-4">
-                    <div className={`p-3 rounded-xl ${c.color === 'mint' ? 'bg-mint/10' : 'bg-copper/10'}`}>
-                      <c.icon className={`w-5 h-5 ${c.color === 'mint' ? 'text-mint' : 'text-copper'}`} />
+              <div className="space-y-4 pt-4 border-t border-border text-xs">
+                {contactInfo.map((info) => (
+                  <div key={info.label} className="flex items-start gap-3">
+                    <div className="w-8 h-8 rounded-xl bg-teal-50 dark:bg-teal-950/60 text-pine dark:text-teal-300 flex items-center justify-center shrink-0 mt-0.5">
+                      <info.icon className="w-4 h-4" />
                     </div>
                     <div>
-                      <p className="text-muted-foreground text-xs font-heading uppercase tracking-wider">{c.label}</p>
-                      <p className="text-foreground font-body font-medium">{c.value}</p>
+                      <p className="font-semibold text-foreground">{info.label}</p>
+                      <p className="text-muted-foreground mt-0.5">{info.value}</p>
                     </div>
                   </div>
-                </GlassCard>
-              ))}
-
-              <GlassCard delay={0.3}>
-                <h4 className="font-heading font-bold text-foreground mb-3">Office Hours</h4>
-                <div className="space-y-2 text-sm font-body text-muted-foreground">
-                  <p>Monday - Friday: 8:00 AM - 6:00 PM</p>
-                  <p>Saturday: 9:00 AM - 2:00 PM</p>
-                  <p>Sunday: Closed</p>
-                </div>
-              </GlassCard>
+                ))}
+              </div>
             </div>
 
-            {/* Form */}
-            <motion.div
-              initial={{ opacity: 0, y: 20 }}
-              animate={{ opacity: 1, y: 0 }}
-              transition={{ duration: 0.7, delay: 0.2 }}
-              className="lg:col-span-3"
-            >
-              <div className="glass-card rounded-2xl p-6 md:p-10">
-                <h3 className="font-heading font-bold text-xl text-foreground mb-6">Send us a message</h3>
-                <form onSubmit={handleSubmit} className="space-y-5">
-                  <div className="grid sm:grid-cols-2 gap-5">
-                    <div>
-                      <label className="text-xs text-muted-foreground font-heading uppercase tracking-wider mb-2 block">Full Name</label>
-                      <Input
-                        value={form.name}
-                        onChange={(e) => setForm({ ...form, name: e.target.value })}
-                        placeholder="Your name"
-                        required
-                        className="bg-secondary/50 border-border/50 text-foreground placeholder:text-muted-foreground/50"
-                      />
-                    </div>
-                    <div>
-                      <label className="text-xs text-muted-foreground font-heading uppercase tracking-wider mb-2 block">Email</label>
-                      <Input
-                        type="email"
-                        value={form.email}
-                        onChange={(e) => setForm({ ...form, email: e.target.value })}
-                        placeholder="your@email.com"
-                        required
-                        className="bg-secondary/50 border-border/50 text-foreground placeholder:text-muted-foreground/50"
-                      />
-                    </div>
-                  </div>
+            <div className="p-6 rounded-3xl bg-muted/40 border border-border flex items-start gap-3">
+              <ShieldCheck className="w-5 h-5 text-pine dark:text-teal-400 shrink-0 mt-0.5" />
+              <div>
+                <h4 className="text-xs font-heading font-bold text-foreground">Immediate HRMS Consultations</h4>
+                <p className="text-[11px] text-muted-foreground mt-1">
+                  For urgent hospital revenue leakage assessments, our field officers can schedule an on-site audit within 48 hours.
+                </p>
+              </div>
+            </div>
+          </div>
 
-                  <div>
-                    <label className="text-xs text-muted-foreground font-heading uppercase tracking-wider mb-2 block">Interest</label>
-                    <Select value={form.interest} onValueChange={(v) => setForm({ ...form, interest: v })}>
-                      <SelectTrigger className="bg-secondary/50 border-border/50 text-foreground">
-                        <SelectValue placeholder="What are you interested in?" />
-                      </SelectTrigger>
-                      <SelectContent>
-                        <SelectItem value="medical">Medical Finance</SelectItem>
-                        <SelectItem value="housing">Housing Solutions</SelectItem>
-                        <SelectItem value="both">Both Services</SelectItem>
-                        <SelectItem value="partnership">Business Partnership</SelectItem>
-                        <SelectItem value="other">Other</SelectItem>
-                      </SelectContent>
-                    </Select>
+          {/* Right Form (7 cols) */}
+          <div className="lg:col-span-7">
+            <div className="rounded-3xl p-8 bg-card border border-border shadow-sm">
+              {submitted ? (
+                <div className="py-12 text-center space-y-4">
+                  <div className="w-12 h-12 rounded-full bg-emerald-100 dark:bg-emerald-950 text-emerald-600 dark:text-emerald-400 mx-auto flex items-center justify-center">
+                    <CheckCircle2 className="w-6 h-6" />
                   </div>
-
+                  <h3 className="text-xl font-heading font-bold text-foreground">Inquiry Submitted Successfully</h3>
+                  <p className="text-xs text-muted-foreground max-w-sm mx-auto font-body">
+                    Thank you. An operations specialist from SwiftRev Technology Limited will review your note and contact you shortly.
+                  </p>
+                  <button
+                    onClick={() => { setSubmitted(false); setForm({ name: '', email: '', phone: '', solution: 'hrms', message: '' }); }}
+                    className="mt-4 px-5 py-2 rounded-full bg-pine text-white text-xs font-semibold"
+                  >
+                    Send Another Message
+                  </button>
+                </div>
+              ) : (
+                <form onSubmit={handleSubmit} className="space-y-4 text-xs">
                   <div>
-                    <label className="text-xs text-muted-foreground font-heading uppercase tracking-wider mb-2 block">Message</label>
-                    <Textarea
-                      value={form.message}
-                      onChange={(e) => setForm({ ...form, message: e.target.value })}
-                      placeholder="Tell us about your needs..."
+                    <label className="block font-semibold text-foreground mb-1.5">Full Name</label>
+                    <input
+                      type="text"
                       required
-                      rows={5}
-                      className="bg-secondary/50 border-border/50 text-foreground placeholder:text-muted-foreground/50 resize-none"
+                      value={form.name}
+                      onChange={(e) => setForm({ ...form, name: e.target.value })}
+                      placeholder="Dr. / Mr. / Mrs. Full Name"
+                      className="w-full px-4 py-2.5 rounded-xl border border-border bg-background text-foreground focus:outline-none focus:ring-2 focus:ring-pine/30"
                     />
                   </div>
 
-                  <Button
+                  <div className="grid sm:grid-cols-2 gap-4">
+                    <div>
+                      <label className="block font-semibold text-foreground mb-1.5">Email Address</label>
+                      <input
+                        type="email"
+                        required
+                        value={form.email}
+                        onChange={(e) => setForm({ ...form, email: e.target.value })}
+                        placeholder="you@organization.com"
+                        className="w-full px-4 py-2.5 rounded-xl border border-border bg-background text-foreground focus:outline-none focus:ring-2 focus:ring-pine/30"
+                      />
+                    </div>
+                    <div>
+                      <label className="block font-semibold text-foreground mb-1.5">Phone Number</label>
+                      <input
+                        type="tel"
+                        required
+                        value={form.phone}
+                        onChange={(e) => setForm({ ...form, phone: e.target.value })}
+                        placeholder="+234..."
+                        className="w-full px-4 py-2.5 rounded-xl border border-border bg-background text-foreground focus:outline-none focus:ring-2 focus:ring-pine/30"
+                      />
+                    </div>
+                  </div>
+
+                  <div>
+                    <label className="block font-semibold text-foreground mb-1.5">Area of Interest</label>
+                    <select
+                      value={form.solution}
+                      onChange={(e) => setForm({ ...form, solution: e.target.value })}
+                      className="w-full px-4 py-2.5 rounded-xl border border-border bg-background text-foreground focus:outline-none focus:ring-2 focus:ring-pine/30"
+                    >
+                      <option value="hrms">HRMS — Hospital Revenue Management (Live Product)</option>
+                      <option value="pos">Smart POS &amp; Fintech Infrastructure</option>
+                      <option value="realestate">Real Estate &amp; Housing Solutions</option>
+                      <option value="corporate">General Partnership / Investor Relations</option>
+                    </select>
+                  </div>
+
+                  <div>
+                    <label className="block font-semibold text-foreground mb-1.5">Your Message / Facility Details</label>
+                    <textarea
+                      rows={4}
+                      required
+                      value={form.message}
+                      onChange={(e) => setForm({ ...form, message: e.target.value })}
+                      placeholder="Tell us about your facility or specific requirements..."
+                      className="w-full px-4 py-2.5 rounded-xl border border-border bg-background text-foreground focus:outline-none focus:ring-2 focus:ring-pine/30"
+                    ></textarea>
+                  </div>
+
+                  <button
                     type="submit"
-                    disabled={sending}
-                    className="w-full bg-mint text-background font-heading font-bold py-6 rounded-xl hover:opacity-90 transition-opacity text-base"
+                    disabled={submitting}
+                    className="w-full py-3 rounded-full bg-pine text-white font-heading font-bold text-xs hover:bg-pine-hover transition flex items-center justify-center gap-2 shadow-xs"
                   >
-                    {sending ? (
-                      <span className="flex items-center gap-2">
-                        <div className="w-4 h-4 border-2 border-background/30 border-t-background rounded-full animate-spin" />
-                        Sending...
-                      </span>
-                    ) : (
-                      <span className="flex items-center gap-2">
-                        <Send className="w-4 h-4" />
-                        Send Message
-                      </span>
-                    )}
-                  </Button>
+                    {submitting ? 'Sending Inquiry...' : 'Submit Inquiry'}
+                    <Send className="w-3.5 h-3.5" />
+                  </button>
                 </form>
-              </div>
-            </motion.div>
+              )}
+            </div>
           </div>
         </div>
       </section>

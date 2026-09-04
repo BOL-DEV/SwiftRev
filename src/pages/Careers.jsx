@@ -1,210 +1,145 @@
 import React from 'react';
 import { Link } from 'react-router-dom';
 import { motion } from 'framer-motion';
-import { TrendingUp, Heart, Users, Wifi, Zap, ArrowRight } from 'lucide-react';
-import SectionHeading from '../components/shared/SectionHeading';
+import { TrendingUp, Heart, Users, Wifi, Zap, ArrowRight, CheckCircle2 } from 'lucide-react';
+import StatusBadge from '../components/shared/StatusBadge';
 
 const perks = [
   {
     icon: TrendingUp,
     title: 'Career Growth',
-    desc: "We take a personal interest in your career goals. At SwiftRev, growth isn't a perk — it's a promise. We sponsor relevant courses, workshops, and certifications to help you reach the next level.",
+    desc: "At SwiftRev Technology Limited, personal mastery is a core commitment. We sponsor certifications and hands-on operational leadership opportunities.",
   },
   {
     icon: Heart,
-    title: 'Great Culture',
-    desc: 'Our culture is built on freedom and responsibility. We trust our people to work how and where they work best — while owning their impact. No micromanagement, just results and respect.',
+    title: 'High-Ownership Culture',
+    desc: 'Our teams have high autonomy and clear responsibility. We measure real operational outcomes, not hours at a desk.',
   },
   {
     icon: Zap,
-    title: 'Healthcare',
-    desc: 'Your wellbeing matters. We offer comprehensive health and welfare programmes including medical, dental, disability, and life insurance — because a healthy team is a high-performing team.',
+    title: 'Healthcare & Wellbeing',
+    desc: 'Comprehensive welfare programs for you and your family. A healthy, protected team builds resilient infrastructure.',
   },
   {
     icon: Users,
-    title: 'Teamwork',
-    desc: "Great things rarely happen alone. We're deeply collaborative — a team that challenges, supports, and celebrates each other. Every voice matters, and every win is shared.",
+    title: 'Collaborative Environment',
+    desc: 'Work alongside experienced engineers, healthcare operations specialists, and finance veterans across Nigeria.',
   },
   {
     icon: Wifi,
-    title: 'Remote Option',
-    desc: "Flexibility is part of our DNA. Partial remote work is built into how we operate — because we believe the best work happens when people have the freedom to own their environment.",
+    title: 'Hybrid & Remote Flexibility',
+    desc: 'Flexible working arrangements that balance field execution in hospitals with deep-work focus.',
   },
   {
     icon: TrendingUp,
-    title: 'Real Impact',
-    desc: "You won't just be filling a seat. At SwiftRev, every role directly contributes to transforming healthcare revenue management across Nigeria. Your work changes things.",
+    title: 'Tangible African Impact',
+    desc: 'Your code and field operations directly eliminate millions of naira in healthcare revenue leaks, safeguarding hospital viability.',
   },
 ];
 
 export default function Careers() {
   return (
-    <div className="pt-20">
+    <div className="pt-24 min-h-screen">
       {/* Hero */}
-      <section className="py-16 md:py-24">
-        <div className="max-w-7xl mx-auto px-6 lg:px-8">
-          <div className="grid lg:grid-cols-2 gap-12 items-center">
-            <motion.div
-              initial={{ opacity: 0, y: 30 }}
-              animate={{ opacity: 1, y: 0 }}
-              transition={{ duration: 0.8 }}
-            >
-              <span className="inline-flex items-center gap-2 px-4 py-2 rounded-full glass-card text-xs font-heading font-semibold tracking-wider uppercase text-mint mb-6">
-                🎉 We're Hiring
-              </span>
-              <h1 className="font-heading font-extrabold text-5xl md:text-6xl text-limestone leading-[0.95] mb-6" style={{ letterSpacing: '-0.04em' }}>
-                Work Can,{' '}
-                <span className="text-mint">&amp; Should,</span>
-                <br />Be Amazing.
-              </h1>
-              <p className="text-muted-foreground text-lg leading-relaxed max-w-lg font-body mb-10">
-                Join us on our mission to transform healthcare revenue management across Africa. We're building something that matters — and we want you on the team.
-              </p>
+      <section className="py-16 md:py-24 max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
+        <div className="grid lg:grid-cols-2 gap-12 items-center">
+          <motion.div
+            initial={{ opacity: 0, y: 20 }}
+            animate={{ opacity: 1, y: 0 }}
+            transition={{ duration: 0.6 }}
+            className="space-y-6"
+          >
+            <div className="inline-flex items-center gap-2 px-3.5 py-1 rounded-full bg-pine/10 text-pine dark:text-teal-300 border border-pine/20 text-xs font-heading font-semibold uppercase tracking-wider">
+              🎉 We're Hiring
+            </div>
+
+            <h1 className="text-4xl md:text-6xl font-heading font-extrabold text-foreground tracking-tight leading-[1.05]">
+              Build Infrastructure That{' '}
+              <span className="text-pine dark:text-teal-400">Truly Matters.</span>
+            </h1>
+
+            <p className="text-base md:text-lg text-muted-foreground font-body leading-relaxed max-w-lg">
+              Join SwiftRev Technology Limited in solving foundational problems across healthcare revenue, smart POS fintech, and real estate.
+            </p>
+
+            <div className="pt-2 flex items-center gap-4">
               <Link
                 to="/contact"
-                className="group inline-flex items-center gap-3 px-8 py-4 bg-mint text-background font-heading font-bold rounded-full hover:opacity-90 transition-all text-lg"
+                className="inline-flex items-center gap-2 px-8 py-3.5 bg-pine text-white font-heading font-bold text-sm rounded-full hover:bg-pine-hover shadow-xs transition"
               >
-                Join Us
-                <ArrowRight className="w-5 h-5 group-hover:translate-x-1 transition-transform" />
+                <span>View Open Roles &amp; Apply</span>
+                <ArrowRight className="w-4 h-4" />
               </Link>
-            </motion.div>
-
-            <motion.div
-              initial={{ opacity: 0, scale: 0.95 }}
-              animate={{ opacity: 1, scale: 1 }}
-              transition={{ duration: 0.8, delay: 0.2 }}
-              className="flex justify-center"
-            >
-              <img
-                src="/images/careers-team-main.jpg"
-                alt="SwiftRev Team"
-                className="w-full max-w-md rounded-3xl shadow-2xl object-contain"
-              />
-            </motion.div>
-          </div>
-        </div>
-      </section>
-
-      {/* Philosophy Banner */}
-      <section className="py-16">
-        <div className="max-w-7xl mx-auto px-6 lg:px-8">
-          <motion.div
-            initial={{ opacity: 0, y: 20 }}
-            whileInView={{ opacity: 1, y: 0 }}
-            viewport={{ once: true }}
-            transition={{ duration: 0.7 }}
-            className="glass-card rounded-3xl p-10 md:p-16 text-center"
-          >
-            <h2 className="font-heading font-extrabold text-3xl md:text-4xl text-mint mb-5" style={{ letterSpacing: '-0.03em' }}>
-              The Experience is Everything.
-            </h2>
-            <p className="text-muted-foreground text-lg font-body leading-relaxed max-w-2xl mx-auto">
-              Everyone believes payment is a technological problem — but we believe otherwise. We believe it is a <span className="text-foreground font-semibold">social problem</span>, and technology is simply the tool we use to solve it. That perspective shapes every decision we make and every product we build.
-            </p>
-          </motion.div>
-        </div>
-      </section>
-
-      {/* Why Work With Us */}
-      <section className="py-24 md:py-32">
-        <div className="max-w-7xl mx-auto px-6 lg:px-8">
-          <SectionHeading
-            badge="Life at SwiftRev"
-            title="Why Work With Us?"
-            description="We've built a place where ambitious people do their best work — and genuinely enjoy doing it."
-          />
-
-          <div className="grid md:grid-cols-2 lg:grid-cols-3 gap-6">
-            {perks.map((perk, i) => (
-              <motion.div
-                key={perk.title}
-                initial={{ opacity: 0, y: 20 }}
-                whileInView={{ opacity: 1, y: 0 }}
-                viewport={{ once: true }}
-                transition={{ duration: 0.5, delay: i * 0.1 }}
-                className="glass-card rounded-2xl p-8 hover:border-mint/20 transition-colors"
-              >
-                <div className="p-3 rounded-xl bg-mint/10 w-fit mb-5">
-                  <perk.icon className="w-6 h-6 text-mint" />
-                </div>
-                <h3 className="font-heading font-bold text-xl text-foreground mb-3">{perk.title}</h3>
-                <p className="text-muted-foreground text-sm font-body leading-relaxed">{perk.desc}</p>
-              </motion.div>
-            ))}
-          </div>
-        </div>
-      </section>
-
-      {/* Team Photo Section */}
-      <section className="py-16">
-        <div className="max-w-7xl mx-auto px-6 lg:px-8">
-          <motion.div
-            initial={{ opacity: 0, y: 20 }}
-            whileInView={{ opacity: 1, y: 0 }}
-            viewport={{ once: true }}
-            transition={{ duration: 0.7 }}
-            className="grid lg:grid-cols-2 gap-12 items-center"
-          >
-            <div>
-              <span className="inline-flex items-center gap-2 px-4 py-2 rounded-full glass-card text-xs font-heading font-semibold tracking-wider uppercase text-mint mb-6">
-                🚀 Our Team
-              </span>
-              <h2 className="font-heading font-extrabold text-3xl md:text-4xl text-limestone mb-5" style={{ letterSpacing: '-0.03em' }}>
-                Take a look at how great it is working with us.
-              </h2>
-              <p className="text-muted-foreground text-lg font-body leading-relaxed">
-                Join our team of rockstars and work on impactful projects. We're not just building products — we're building a culture where talented people thrive and make a real difference across Africa.
-              </p>
             </div>
-            <div className="grid grid-cols-2 gap-4">
-              <img
-                src="/images/careers-team-grid-1.jpg"
-                alt="SwiftRev Team"
-                className="w-full rounded-2xl shadow-xl object-cover aspect-[3/4]"
-              />
-              <div className="flex flex-col gap-4">
-                <img
-                  src="/images/careers-workspace.jpg"
-                  alt="SwiftRev Workspace"
-                  className="w-full rounded-2xl shadow-xl object-cover flex-1"
-                  style={{ height: '48%' }}
-                />
-                <img
-                  src="/images/careers-developer.jpg"
-                  alt="SwiftRev Developer"
-                  className="w-full rounded-2xl shadow-xl object-cover flex-1"
-                  style={{ height: '48%' }}
-                />
+          </motion.div>
+
+          <motion.div
+            initial={{ opacity: 0, scale: 0.95 }}
+            animate={{ opacity: 1, scale: 1 }}
+            transition={{ duration: 0.6, delay: 0.2 }}
+            className="p-8 rounded-3xl bg-card border border-border shadow-sm space-y-4"
+          >
+            <h3 className="font-heading font-bold text-xl text-foreground">Why Engineers &amp; Operators Join Us</h3>
+            <p className="text-xs text-muted-foreground font-body leading-relaxed">
+              We aren't building trivial consumer toys. Our flagship HRMS platform sits directly between hospital cashiers, patients, and banking ledgers — guaranteeing that healthcare institutions remain solvent and operational.
+            </p>
+            <div className="space-y-2 pt-2 text-xs">
+              <div className="flex items-center gap-2 text-foreground font-medium">
+                <CheckCircle2 className="w-4 h-4 text-pine dark:text-teal-400" />
+                <span>Live deployment in healthcare institutions</span>
+              </div>
+              <div className="flex items-center gap-2 text-foreground font-medium">
+                <CheckCircle2 className="w-4 h-4 text-pine dark:text-teal-400" />
+                <span>Modern React, Vite, Node, and embedded Linux/Android POS stacks</span>
+              </div>
+              <div className="flex items-center gap-2 text-foreground font-medium">
+                <CheckCircle2 className="w-4 h-4 text-pine dark:text-teal-400" />
+                <span>Competitive compensation with performance bonuses</span>
               </div>
             </div>
           </motion.div>
         </div>
       </section>
 
-      {/* CTA */}
-      <section className="py-24">
-        <div className="max-w-4xl mx-auto px-6 lg:px-8 text-center">
-          <motion.div
-            initial={{ opacity: 0, y: 20 }}
-            whileInView={{ opacity: 1, y: 0 }}
-            viewport={{ once: true }}
-            transition={{ duration: 0.7 }}
-            className="glass-card rounded-3xl p-12 md:p-16"
-          >
-            <h2 className="font-heading font-extrabold text-3xl md:text-4xl text-foreground mb-4" style={{ letterSpacing: '-0.04em' }}>
-              Ready to Do the Best Work of Your Life?
+      {/* Perks Grid */}
+      <section className="py-20 border-t border-border bg-card">
+        <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
+          <div className="text-center max-w-2xl mx-auto mb-16">
+            <span className="text-xs font-heading font-semibold uppercase tracking-wider text-pine dark:text-teal-400">
+              Perks &amp; Culture
+            </span>
+            <h2 className="text-3xl font-heading font-extrabold text-foreground mt-2">
+              Life at SwiftRev Technology Limited
             </h2>
-            <p className="text-muted-foreground text-lg mb-8 font-body max-w-xl mx-auto">
-              We're always looking for driven, curious people who want to build something that changes healthcare finance in Africa. Let's talk.
-            </p>
-            <Link
-              to="/contact"
-              className="group inline-flex items-center gap-3 px-10 py-4 bg-mint text-background font-heading font-bold rounded-full hover:opacity-90 transition-all text-lg"
-            >
-              Get in Touch
-              <ArrowRight className="w-5 h-5 group-hover:translate-x-1 transition-transform" />
-            </Link>
-          </motion.div>
+          </div>
+
+          <div className="grid md:grid-cols-2 lg:grid-cols-3 gap-6">
+            {perks.map((p) => (
+              <div key={p.title} className="p-6 rounded-2xl bg-background border border-border space-y-3">
+                <div className="w-10 h-10 rounded-xl bg-teal-50 dark:bg-teal-950/60 text-pine dark:text-teal-300 flex items-center justify-center">
+                  <p.icon className="w-5 h-5" />
+                </div>
+                <h3 className="font-heading font-bold text-lg text-foreground">{p.title}</h3>
+                <p className="text-xs text-muted-foreground font-body leading-relaxed">{p.desc}</p>
+              </div>
+            ))}
+          </div>
+        </div>
+      </section>
+
+      {/* CTA */}
+      <section className="py-20 max-w-4xl mx-auto px-4 text-center">
+        <div className="rounded-3xl p-10 bg-pine text-white shadow-xl">
+          <h2 className="text-3xl font-heading font-extrabold">Ready to Join Our Mission?</h2>
+          <p className="mt-3 text-sm text-white/80 max-w-md mx-auto font-body">
+            Reach out directly with your portfolio or CV. We are always seeking talented minds across engineering, sales, and field operations.
+          </p>
+          <Link
+            to="/contact"
+            className="mt-6 inline-block px-8 py-3.5 rounded-full bg-white text-pine font-heading font-bold text-xs hover:bg-slate-100 transition shadow"
+          >
+            Contact Talent Team
+          </Link>
         </div>
       </section>
     </div>

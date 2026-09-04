@@ -1,4 +1,4 @@
-@import url('https://fonts.googleapis.com/css2?family=Plus+Jakarta+Sans:wght@400;500;600;700;800&family=Inter:wght@300;400;500;600&display=swap');
+@import url('https://fonts.googleapis.com/css2?family=Plus+Jakarta+Sans:wght@400;500;600;700;800&family=Inter:wght@300;400;500;600;700&display=swap');
 
 @tailwind base;
 @tailwind components;
@@ -9,84 +9,94 @@
     --font-heading: 'Plus Jakarta Sans', sans-serif;
     --font-body: 'Inter', sans-serif;
 
-    --background: 210 14% 3%;
-    --foreground: 240 5% 96%;
-    --card: 210 10% 6%;
-    --card-foreground: 240 5% 96%;
-    --popover: 210 10% 6%;
-    --popover-foreground: 240 5% 96%;
-    --primary: 152 100% 85%;
-    --primary-foreground: 210 14% 3%;
-    --secondary: 210 8% 12%;
-    --secondary-foreground: 240 5% 96%;
-    --muted: 210 8% 10%;
-    --muted-foreground: 210 5% 55%;
-    --accent: 28 56% 46%;
-    --accent-foreground: 240 5% 96%;
+    /* Screenshot Light Mode Theme */
+    --background: 160 20% 97%; /* #F4F8F6 */
+    --foreground: 165 30% 12%; /* #13221F */
+
+    --card: 0 0% 100%; /* #FFFFFF */
+    --card-foreground: 165 30% 12%;
+
+    --popover: 0 0% 100%;
+    --popover-foreground: 165 30% 12%;
+
+    /* Deep Pine Teal from screenshot nav active button */
+    --primary: 172 75% 21%; /* #0D5C52 */
+    --primary-foreground: 0 0% 100%;
+
+    --secondary: 160 25% 92%; /* #E6F0EC */
+    --secondary-foreground: 172 75% 21%;
+
+    --muted: 160 18% 93%;
+    --muted-foreground: 215 16% 47%; /* #64748B */
+
+    --accent: 164 65% 88%; /* #D2F5EC */
+    --accent-foreground: 172 75% 21%;
+
     --destructive: 0 84.2% 60.2%;
     --destructive-foreground: 0 0% 98%;
-    --border: 210 8% 14%;
-    --input: 210 8% 14%;
-    --ring: 152 100% 85%;
-    --chart-1: 152 100% 85%;
-    --chart-2: 28 56% 46%;
-    --chart-3: 210 5% 55%;
-    --chart-4: 152 60% 60%;
-    --chart-5: 28 80% 60%;
-    --radius: 0.75rem;
-    --sidebar-background: 210 10% 5%;
-    --sidebar-foreground: 240 5% 96%;
-    --sidebar-primary: 152 100% 85%;
-    --sidebar-primary-foreground: 210 14% 3%;
-    --sidebar-accent: 210 8% 10%;
-    --sidebar-accent-foreground: 240 5% 96%;
-    --sidebar-border: 210 8% 14%;
-    --sidebar-ring: 152 100% 85%;
+
+    --border: 160 16% 89%; /* #DEECE6 */
+    --input: 160 16% 89%;
+    --ring: 172 75% 21%;
+
+    --radius: 0.875rem;
+
+    /* Custom Tokens */
+    --pine: #0D5C52;
+    --pine-dark: #094039;
+    --pine-light: #167A6D;
+    --mint: #2DD4BF;
+    --mint-soft: #D2F5EC;
+    --sage-bg: #F4F8F6;
   }
 
   .dark {
-    --background: 210 14% 3%;
-    --foreground: 240 5% 96%;
-    --card: 210 10% 6%;
-    --card-foreground: 240 5% 96%;
-    --popover: 210 10% 6%;
-    --popover-foreground: 240 5% 96%;
-    --primary: 152 100% 85%;
-    --primary-foreground: 210 14% 3%;
-    --secondary: 210 8% 12%;
-    --secondary-foreground: 240 5% 96%;
-    --muted: 210 8% 10%;
-    --muted-foreground: 210 5% 55%;
-    --accent: 28 56% 46%;
-    --accent-foreground: 240 5% 96%;
-    --destructive: 0 62.8% 30.6%;
+    /* Rich Obsidian Pine Dark Mode */
+    --background: 170 35% 6%; /* #0A1312 */
+    --foreground: 210 20% 96%; /* #F1F5F9 */
+
+    --card: 171 30% 10%; /* #10201D */
+    --card-foreground: 210 20% 96%;
+
+    --popover: 171 28% 13%; /* #142724 */
+    --popover-foreground: 210 20% 96%;
+
+    --primary: 168 76% 40%; /* #14B8A6 */
+    --primary-foreground: 170 35% 6%;
+
+    --secondary: 171 25% 15%; /* #18312C */
+    --secondary-foreground: 168 76% 50%;
+
+    --muted: 171 20% 14%;
+    --muted-foreground: 215 16% 65%; /* #94A3B8 */
+
+    --accent: 171 25% 18%;
+    --accent-foreground: 168 76% 75%;
+
+    --destructive: 0 70% 50%;
     --destructive-foreground: 0 0% 98%;
-    --border: 210 8% 14%;
-    --input: 210 8% 14%;
-    --ring: 152 100% 85%;
-    --chart-1: 152 100% 85%;
-    --chart-2: 28 56% 46%;
-    --chart-3: 210 5% 55%;
-    --chart-4: 152 60% 60%;
-    --chart-5: 28 80% 60%;
-    --sidebar-background: 210 10% 5%;
-    --sidebar-foreground: 240 5% 96%;
-    --sidebar-primary: 152 100% 85%;
-    --sidebar-primary-foreground: 210 14% 3%;
-    --sidebar-accent: 210 8% 10%;
-    --sidebar-accent-foreground: 240 5% 96%;
-    --sidebar-border: 210 8% 14%;
-    --sidebar-ring: 152 100% 85%;
+
+    --border: 170 20% 18%; /* #1D3631 */
+    --input: 170 20% 18%;
+    --ring: 168 76% 40%;
+
+    /* Custom Tokens */
+    --pine: #14B8A6;
+    --pine-dark: #0D5C52;
+    --pine-light: #2DD4BF;
+    --mint: #2DD4BF;
+    --mint-soft: #163630;
+    --sage-bg: #0A1312;
   }
 }
 
 @layer base {
   * {
-    @apply border-border outline-ring/50;
+    @apply border-border;
   }
 
   body {
-    @apply bg-background text-foreground font-body;
+    @apply bg-background text-foreground font-body transition-colors duration-200;
   }
 }
 
@@ -97,33 +107,83 @@
   .font-body {
     font-family: var(--font-body);
   }
+
   .glass-card {
-    @apply bg-card/40 backdrop-blur-xl border border-border/50;
+    @apply bg-card/90 backdrop-blur-md border border-border/80 shadow-sm transition-all duration-200;
   }
-  .text-copper {
-    color: #B87333;
+
+  .theme-panel {
+    @apply bg-card border border-border shadow-sm rounded-2xl;
   }
-  .bg-copper {
-    background-color: #B87333;
+
+  /* Screenshot Style Attention Pills */
+  .pill-warning {
+    background-color: #FEF9C3;
+    border: 1px solid #FEF08A;
+    color: #854D0E;
   }
-  .border-copper {
-    border-color: #B87333;
+  .dark .pill-warning {
+    background-color: rgba(202, 138, 4, 0.15);
+    border: 1px solid rgba(202, 138, 4, 0.3);
+    color: #FDE047;
   }
+
+  .pill-neutral {
+    background-color: #F1F5F9;
+    border: 1px solid #E2E8F0;
+    color: #475569;
+  }
+  .dark .pill-neutral {
+    background-color: rgba(148, 163, 184, 0.12);
+    border: 1px solid rgba(148, 163, 184, 0.25);
+    color: #CBD5E1;
+  }
+
+  .pill-danger {
+    background-color: #FEE2E2;
+    border: 1px solid #FECACA;
+    color: #991B1B;
+  }
+  .dark .pill-danger {
+    background-color: rgba(220, 38, 38, 0.15);
+    border: 1px solid rgba(220, 38, 38, 0.3);
+    color: #FCA5A5;
+  }
+
+  /* Deep Pine Colors */
+  .text-pine {
+    color: #0D5C52;
+  }
+  .dark .text-pine {
+    color: #2DD4BF;
+  }
+
+  .bg-pine {
+    background-color: #0D5C52;
+  }
+  .dark .bg-pine {
+    background-color: #14B8A6;
+  }
+
+  .bg-pine-hover:hover {
+    background-color: #0A4A42;
+  }
+  .dark .bg-pine-hover:hover {
+    background-color: #0D9488;
+  }
+
+  /* Fresh Mint */
   .text-mint {
-    color: #B2FFD9;
+    color: #0D9488;
   }
-  .bg-mint {
-    background-color: #B2FFD9;
+  .dark .text-mint {
+    color: #5EEAD4;
   }
-  .text-limestone {
-    color: #F5F5F7;
+
+  .bg-mint-soft {
+    background-color: #D2F5EC;
   }
-  .bg-obsidian {
-    background-color: #080A0C;
-  }
-  .hairline {
-    @apply border-b;
-    border-width: 0.5px;
-    border-color: rgba(255,255,255,0.06);
+  .dark .bg-mint-soft {
+    background-color: rgba(45, 212, 191, 0.15);
   }
 }

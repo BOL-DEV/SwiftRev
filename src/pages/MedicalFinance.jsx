@@ -1,191 +1,341 @@
 import React from 'react';
 import { Link } from 'react-router-dom';
 import { motion } from 'framer-motion';
-import { Activity, BarChart2, ShieldCheck, Search, TrendingUp, ArrowRight, Layers, AlertCircle } from 'lucide-react';
-import SectionHeading from '../components/shared/SectionHeading';
-import GlassCard from '../components/shared/GlassCard';
-import PulseIndicator from '../components/shared/PulseIndicator';
+import {
+  Activity,
+  Receipt,
+  Pill,
+  ShieldCheck,
+  BarChart3,
+  ArrowRight,
+  ArrowLeft,
+  CheckCircle2,
+  Building2,
+  Users,
+  CreditCard,
+  Layers,
+  Clock,
+  Warehouse,
+  Boxes,
+  Lock,
+  Workflow
+} from 'lucide-react';
+import StatusBadge from '../components/shared/StatusBadge';
 
-const features = [
-  { icon: BarChart2, title: 'Revenue Collection & Management', desc: 'We collect and manage revenue on behalf of hospitals and healthcare facilities, ensuring every naira is accounted for from source to ledger.' },
-  { icon: Search, title: 'Leakage Detection', desc: 'Advanced monitoring systems identify revenue leakages and financial loopholes before they erode your facility\'s income.' },
-  { icon: ShieldCheck, title: 'Accountability & Controls', desc: 'Robust internal controls create a transparent audit trail, ensuring every transaction is verified and every process is accountable.' },
-  { icon: TrendingUp, title: 'Cash Flow Optimisation', desc: 'Structured reporting and cycle management improve cash flow, giving healthcare providers a clear picture of their financial health at all times.' },
-  { icon: Activity, title: 'Accurate Reporting', desc: 'Timely, precise financial reports that empower hospital management to make informed decisions without guesswork.' },
-  { icon: Layers, title: 'End-to-End Revenue Cycle', desc: 'From billing and collections to reconciliation and reporting — we handle the full revenue cycle so clinicians can focus on patient care.' },
+const modules = [
+  {
+    num: '01',
+    name: 'Cashier & Front Office Agent Desk',
+    subtitle: 'Patient Registration, Identity & Multi-Channel Billing',
+    icon: Receipt,
+    description: 'The front-line administrative and revenue collection engine. Manages patient journeys from entry to verified discharge with complete financial oversight.',
+    features: [
+      {
+        title: 'Patient Identity Management',
+        desc: 'Onboards new and returning patients with unique hospital identifiers, demographics, and next-of-kin records.',
+      },
+      {
+        title: 'Service Billing & Invoicing',
+        desc: 'Generates detailed bill items for doctor consultations, nursing services, laboratory tests, ward beds, and clinical procedures.',
+      },
+      {
+        title: 'Flexible Multi-Channel Clearance',
+        desc: 'Real-time payment settlements via Cash, POS terminals, Bank Transfer, Patient Wallets (with balance top-ups), and HMO/Insurance clearances.',
+      },
+      {
+        title: 'Express & Emergency Encounters',
+        desc: 'Facilitates fast-track checkout and immediate care authorization for non-registered or emergency walk-in patients.',
+      },
+    ],
+    screenshotPlaceholder: 'Cashier Terminal & Billing Encounter Screen',
+  },
+  {
+    num: '02',
+    name: 'Dual-Tier Pharmacy Ecosystem',
+    subtitle: 'Central Store (Warehouse) & Dispensing Pharmacy Points',
+    icon: Pill,
+    description: 'Enforces strict separation of concerns between central inventory procurement and clinical point-of-care medication dispensing, closing pharmaceutical stock leakages.',
+    features: [
+      {
+        title: 'Central Pharmacy Store (PHARMACY_STORE)',
+        desc: 'Maintains master drug catalog, bulk stock receipts from suppliers, batch reserves, purchase costs, and expiration monitoring.',
+      },
+      {
+        title: 'Warehouse Transfer Hub',
+        desc: 'Reviews, approves, and dispatches stock restock orders requested by individual outpatient and ward dispensing units.',
+      },
+      {
+        title: 'Dispensing Pharmacy Points (PHARMACY)',
+        desc: 'Matches patient invoices to dispense prescribed medications, allowing unit retail pricing and real-time point-of-sale inventory thresholds.',
+      },
+      {
+        title: 'Stock Audit Ledger',
+        desc: 'Full chronological ledger tracking every stock shift, dispense event, restock receipt, and batch expiration across all points.',
+      },
+    ],
+    screenshotPlaceholder: 'Dual-Tier Pharmacy Store & Dispensing Point Interface',
+  },
+  {
+    num: '03',
+    name: 'Hospital Administration & Governance',
+    subtitle: 'Finance Officer (FO), Medical Director (CMD) & RBAC',
+    icon: ShieldCheck,
+    description: 'Comprehensive administrative oversight governing staff access, department configurations, and facility-wide module controls.',
+    features: [
+      {
+        title: 'Department & Clinic Management',
+        desc: 'Configures consultation clinics, specialty departments, outpatient units, hospital wards, and physical bed allocations.',
+      },
+      {
+        title: 'Role-Based Access Control (RBAC)',
+        desc: 'Strict staff provisioning across Cashiers, Doctors, Pharmacists, Store Keepers, and Finance Officers/Accountants.',
+      },
+      {
+        title: 'Module Switches & Operational Controls',
+        desc: 'Hospital-wide toggles for payment channels, discount thresholds, reprint authorizations, and service tariff pricing.',
+      },
+    ],
+    screenshotPlaceholder: 'Hospital Admin Configuration & Staff Access Console',
+  },
+  {
+    num: '04',
+    name: 'Financial Audit & Real-Time Reporting',
+    subtitle: 'Closed-Loop Revenue Dashboards & Inventory Valuation',
+    icon: BarChart3,
+    description: 'Tamper-evident transaction logs and automated executive reporting that empower hospital boards with zero-leakage visibility.',
+    features: [
+      {
+        title: 'Live Revenue Dashboards',
+        desc: 'Real-time aggregation of collections segmented by payment channel (Cash, POS, Transfer, Insurance), cashier shifts, and service departments.',
+      },
+      {
+        title: 'Inventory & Stock Valuation',
+        desc: 'Quantifies sitting warehouse stock value, cost-of-goods-sold (COGS), point-of-dispense margins, and wastage/expiry alerts.',
+      },
+      {
+        title: 'Shift Reconciliation & Accountability',
+        desc: 'Tamper-evident transaction logs for end-of-shift physical cash balancing, supervisor authorizations, and audit compliance.',
+      },
+    ],
+    screenshotPlaceholder: 'Executive Revenue Dashboard & Financial Audit Reports',
+  },
 ];
 
-const steps = [
-  { step: '01', title: 'Onboard Your Facility', desc: 'We assess your current revenue cycle, identify gaps, and set up our management systems within your facility.' },
-  { step: '02', title: 'Implement Controls', desc: 'Financial monitoring, accountability frameworks, and reporting tools are deployed across all revenue touchpoints.' },
-  { step: '03', title: 'Monitor & Report', desc: 'Continuous oversight with real-time dashboards and regular performance reports keep you fully informed.' },
-  { step: '04', title: 'Optimise & Scale', desc: 'Insights from our data drive ongoing improvements, closing loopholes and strengthening revenue performance over time.' },
+const patientJourneySteps = [
+  {
+    step: '01',
+    title: 'Arrival & Front Office',
+    desc: 'Patient arrives at the Front Office. Front desk registers new patient or retrieves existing medical identifier.',
+  },
+  {
+    step: '02',
+    title: 'Consultation & Invoicing',
+    desc: 'Services and tests are billed. Cashier desk clears transaction via Cash, POS, Transfer, or HMO and issues verified receipt token.',
+  },
+  {
+    step: '03',
+    title: 'Prescription Dispense',
+    desc: 'Patient proceeds to Dispensing Pharmacy Point. Pharmacist validates payment token and dispenses medication against point inventory.',
+  },
+  {
+    step: '04',
+    title: 'Supply Chain Restock',
+    desc: 'When point inventory depletes, Pharmacist requests restock from Central Pharmacy Store. Store approves and dispatches batches.',
+  },
+  {
+    step: '05',
+    title: 'Shift Reconciliation',
+    desc: 'At end of shift, finance officers balance physical collections against logged revenue, guaranteeing zero leakage.',
+  },
 ];
 
 export default function MedicalFinance() {
   return (
-    <div className="pt-20">
-      {/* Hero */}
-      <section className="relative py-24 md:py-32 overflow-hidden">
-        <div className="absolute inset-0 bg-obsidian">
-          <div className="absolute top-0 right-0 w-[600px] h-[600px] bg-mint/5 rounded-full blur-[150px]" />
-        </div>
-        <div className="max-w-7xl mx-auto px-6 lg:px-8 relative z-10">
-          <div className="grid lg:grid-cols-2 gap-12 items-center">
-            <motion.div initial={{ opacity: 0, y: 30 }} animate={{ opacity: 1, y: 0 }} transition={{ duration: 0.7 }}>
-              <span className="inline-flex items-center gap-2 px-4 py-2 rounded-full glass-card text-xs font-heading font-semibold tracking-wider uppercase text-mint mb-6">
-                <PulseIndicator color="mint" size="sm" />
-                Medical Finance
+    <div className="pt-24 min-h-screen font-body">
+      {/* Back link & Top Nav */}
+      <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 pt-6">
+        <Link
+          to="/works"
+          className="inline-flex items-center gap-2 text-xs font-semibold text-muted-foreground hover:text-pine dark:hover:text-teal-400 transition-colors"
+        >
+          <ArrowLeft className="w-3.5 h-3.5" />
+          <span>Back to Our Works</span>
+        </Link>
+      </div>
+
+      {/* Hero Section */}
+      <section className="py-12 md:py-20 relative overflow-hidden">
+        <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
+          <div className="max-w-4xl space-y-6">
+            <div className="flex items-center gap-3">
+              <StatusBadge status="live" size="md" />
+              <span className="text-xs font-heading font-semibold uppercase tracking-wider text-muted-foreground">
+                Hospital Revenue Management System (HRMS)
               </span>
-              <h1 className="font-heading font-extrabold text-4xl md:text-5xl lg:text-6xl text-limestone leading-[0.95] mb-6" style={{ letterSpacing: '-0.04em' }}>
-                Hospital Revenue,{' '}
-                <span className="text-mint">Fully Managed.</span>
-              </h1>
-              <p className="text-muted-foreground text-lg leading-relaxed max-w-lg font-body mb-8">
-                SwiftRev is a structured financial management solution that collects and manages revenue on behalf of hospitals and healthcare facilities — delivering transparency, accountability, and a stronger bottom line.
-              </p>
-              <Link
-                to="/contact"
-                className="group inline-flex items-center gap-3 px-8 py-4 bg-mint text-background font-heading font-bold rounded-full hover:opacity-90 transition-all"
-              >
-                Partner With Us
-                <ArrowRight className="w-4 h-4 group-hover:translate-x-1 transition-transform" />
-              </Link>
-            </motion.div>
+            </div>
 
-            <motion.div initial={{ opacity: 0, scale: 0.95 }} animate={{ opacity: 1, scale: 1 }} transition={{ duration: 0.7, delay: 0.2 }}>
-              <img src="/images/medical-finance-hero.png" alt="Medical Finance" className="w-full h-[450px] object-cover rounded-3xl" />
-            </motion.div>
-          </div>
-        </div>
-      </section>
+            <h1 className="text-4xl sm:text-5xl lg:text-6xl font-heading font-extrabold text-foreground tracking-tight leading-[1.06]">
+              End-to-End Hospital Revenue &amp;{' '}
+              <span className="text-pine dark:text-teal-400">Operations Management</span>
+            </h1>
 
-      {/* Value Statement */}
-      <section className="py-12 md:py-16">
-        <div className="max-w-7xl mx-auto px-6 lg:px-8">
-          <div className="glass-card rounded-2xl p-8 md:p-12 grid md:grid-cols-3 gap-8 text-center">
-            {[
-              { stat: 'Full Transparency', desc: 'Every transaction is tracked, reported, and visible to hospital management in real time.' },
-              { stat: 'Zero Leakages', desc: 'Systematic controls and monitoring close financial loopholes before they become losses.' },
-              { stat: 'More Patient Care', desc: 'With revenue administration handled, your teams focus entirely on healthcare delivery.' },
-            ].map((item, i) => (
-              <motion.div key={item.stat} initial={{ opacity: 0, y: 20 }} whileInView={{ opacity: 1, y: 0 }} viewport={{ once: true }} transition={{ delay: i * 0.1 }}>
-                <h3 className="font-heading font-extrabold text-xl text-mint mb-2">{item.stat}</h3>
-                <p className="text-muted-foreground text-sm font-body leading-relaxed">{item.desc}</p>
-              </motion.div>
-            ))}
-          </div>
-        </div>
-      </section>
-
-      {/* Features */}
-      <section className="py-24 md:py-32">
-        <div className="max-w-7xl mx-auto px-6 lg:px-8">
-          <SectionHeading
-            badge="What We Do"
-            title="A Complete Revenue Management Solution"
-            description="We take full responsibility for the financial engine of your facility — so you never lose revenue to inefficiency or oversight again."
-          />
-          <div className="grid md:grid-cols-2 lg:grid-cols-3 gap-6">
-            {features.map((f, i) => (
-              <GlassCard key={f.title} delay={i * 0.08}>
-                <div className="p-3 rounded-xl bg-mint/10 w-fit mb-5">
-                  <f.icon className="w-6 h-6 text-mint" />
-                </div>
-                <h3 className="font-heading font-bold text-lg text-foreground mb-2">{f.title}</h3>
-                <p className="text-muted-foreground text-sm font-body leading-relaxed">{f.desc}</p>
-              </GlassCard>
-            ))}
-          </div>
-        </div>
-      </section>
-
-      {/* How It Works */}
-      <section className="py-24 md:py-32 relative">
-        <div className="max-w-7xl mx-auto px-6 lg:px-8">
-          <SectionHeading badge="Our Process" title="How We Work With You" description="A clear, structured engagement that gets your revenue cycle under control from day one." />
-          <div className="grid md:grid-cols-2 lg:grid-cols-4 gap-6">
-            {steps.map((s, i) => (
-              <motion.div
-                key={s.step}
-                initial={{ opacity: 0, y: 20 }}
-                whileInView={{ opacity: 1, y: 0 }}
-                viewport={{ once: true }}
-                transition={{ duration: 0.5, delay: i * 0.12 }}
-                className="relative"
-              >
-                <div className="glass-card rounded-2xl p-6 h-full">
-                  <span className="text-5xl font-heading font-extrabold text-mint/10">{s.step}</span>
-                  <h4 className="font-heading font-bold text-foreground text-lg mt-2 mb-2">{s.title}</h4>
-                  <p className="text-muted-foreground text-sm font-body leading-relaxed">{s.desc}</p>
-                </div>
-                {i < steps.length - 1 && (
-                  <div className="hidden lg:block absolute top-1/2 -right-3 w-6 h-0.5 bg-mint/20" />
-                )}
-              </motion.div>
-            ))}
-          </div>
-        </div>
-      </section>
-
-      {/* What Defines Us */}
-      <section className="py-24 md:py-32">
-        <div className="max-w-7xl mx-auto px-6 lg:px-8">
-          <SectionHeading
-            badge="Our Identity"
-            title="What Defines Us"
-            description="We're a deeply mission-driven company, and these are the core ideas we return to when we make decisions."
-          />
-          <div className="grid md:grid-cols-3 gap-6">
-            {[
-              { number: '01', title: 'Integrity First', desc: 'Every decision we make is grounded in honesty and transparency. We hold ourselves to the same accountability standards we bring to our clients.' },
-              { number: '02', title: 'Mission Over Margin', desc: 'We exist to strengthen healthcare infrastructure in Nigeria. Revenue is a byproduct of impact, never the other way around.' },
-              { number: '03', title: 'Built for the Long Term', desc: 'We build deep partnerships — not transactional engagements. Our goal is lasting financial health for every facility we serve.' },
-            ].map((item, i) => (
-              <motion.div
-                key={item.number}
-                initial={{ opacity: 0, y: 20 }}
-                whileInView={{ opacity: 1, y: 0 }}
-                viewport={{ once: true }}
-                transition={{ duration: 0.5, delay: i * 0.12 }}
-                className="glass-card rounded-2xl p-8"
-              >
-                <span className="text-5xl font-heading font-extrabold text-mint/10">{item.number}</span>
-                <h3 className="font-heading font-bold text-xl text-foreground mt-2 mb-3">{item.title}</h3>
-                <p className="text-muted-foreground text-sm font-body leading-relaxed">{item.desc}</p>
-              </motion.div>
-            ))}
-          </div>
-        </div>
-      </section>
-
-      {/* CTA */}
-      <section className="py-24">
-        <div className="max-w-4xl mx-auto px-6 lg:px-8 text-center">
-          <motion.div initial={{ opacity: 0, y: 20 }} whileInView={{ opacity: 1, y: 0 }} viewport={{ once: true }} transition={{ duration: 0.7 }}>
-            <h2 className="font-heading font-extrabold text-3xl md:text-4xl text-foreground mb-6" style={{ letterSpacing: '-0.04em' }}>
-              Your Facility Deserves Better Financial Management
-            </h2>
-            <p className="text-muted-foreground text-lg mb-8 font-body">
-              Let SwiftRev handle your revenue cycle — from collection to reporting — while your team focuses on delivering exceptional patient care.
+            <p className="text-base sm:text-lg text-muted-foreground leading-relaxed max-w-3xl">
+              <strong>HRMS</strong> is SwiftRev's operational flagship — an enterprise healthcare operations and revenue platform designed to automate, streamline, and audit the complete administrative, clinical support, billing, dual-tier pharmacy supply chain, and financial reporting lifecycle of modern hospitals.
             </p>
-            <div className="flex flex-col sm:flex-row gap-4 justify-center">
+
+            <div className="pt-2 flex flex-wrap items-center gap-4">
               <Link
                 to="/contact"
-                className="group inline-flex items-center gap-3 px-10 py-4 bg-mint text-background font-heading font-bold rounded-full hover:opacity-90 transition-all text-lg"
+                className="inline-flex items-center gap-2 px-7 py-3.5 rounded-full bg-pine text-white text-xs font-heading font-bold hover:bg-pine-hover shadow-xs transition"
               >
-                Get Started
-                <ArrowRight className="w-5 h-5 group-hover:translate-x-1 transition-transform" />
-              </Link>
-              <Link
-                to="/hospital-login"
-                className="group inline-flex items-center gap-3 px-10 py-4 border border-mint/40 text-mint font-heading font-bold rounded-full hover:bg-mint/10 transition-all text-lg"
-              >
-                Hospital Dashboard
-                <ArrowRight className="w-5 h-5 group-hover:translate-x-1 transition-transform" />
+                <span>Request Facility Consultation</span>
+                <ArrowRight className="w-3.5 h-3.5" />
               </Link>
             </div>
-          </motion.div>
+          </div>
+        </div>
+      </section>
+
+      {/* Patient Journey Flowchart */}
+      <section className="py-16 bg-card border-y border-border">
+        <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
+          <div className="text-center max-w-2xl mx-auto mb-14">
+            <span className="text-xs font-heading font-semibold uppercase tracking-wider text-pine dark:text-teal-400">
+              Operational Lifecycle
+            </span>
+            <h2 className="text-3xl font-heading font-extrabold text-foreground mt-1">
+              Typical Patient Journey Through HRMS
+            </h2>
+            <p className="text-xs text-muted-foreground mt-2">
+              From arrival to prescription dispensing and treasury reconciliation — every touchpoint is audited.
+            </p>
+          </div>
+
+          <div className="grid sm:grid-cols-2 lg:grid-cols-5 gap-4">
+            {patientJourneySteps.map((s, idx) => (
+              <div
+                key={s.step}
+                className="p-5 rounded-2xl bg-background border border-border flex flex-col justify-between space-y-3 relative"
+              >
+                <div>
+                  <span className="text-2xl font-heading font-black text-pine dark:text-teal-400">
+                    {s.step}
+                  </span>
+                  <h3 className="font-heading font-bold text-sm text-foreground mt-2">
+                    {s.title}
+                  </h3>
+                  <p className="text-xs text-muted-foreground leading-relaxed mt-1">
+                    {s.desc}
+                  </p>
+                </div>
+                {idx < patientJourneySteps.length - 1 && (
+                  <div className="hidden lg:block absolute -right-3 top-1/2 -translate-y-1/2 z-10">
+                    <div className="w-6 h-6 rounded-full bg-card border border-border flex items-center justify-center text-muted-foreground text-xs">
+                      &rarr;
+                    </div>
+                  </div>
+                )}
+              </div>
+            ))}
+          </div>
+        </div>
+      </section>
+
+      {/* Core Modules Breakdown */}
+      <section className="py-20 max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 space-y-20">
+        <div className="text-center max-w-2xl mx-auto">
+          <span className="text-xs font-heading font-semibold uppercase tracking-wider text-pine dark:text-teal-400">
+            Platform Architecture
+          </span>
+          <h2 className="text-3xl sm:text-4xl font-heading font-extrabold text-foreground mt-2">
+            Core Modules &amp; Subsystems
+          </h2>
+        </div>
+
+        {modules.map((m, idx) => {
+          const Icon = m.icon;
+          return (
+            <div
+              key={m.num}
+              className="rounded-3xl p-8 md:p-12 bg-card border border-border shadow-xs space-y-8"
+            >
+              {/* Module Header */}
+              <div className="flex flex-col md:flex-row md:items-center justify-between gap-4 pb-6 border-b border-border">
+                <div className="flex items-start gap-4">
+                  <div className="w-12 h-12 rounded-2xl bg-teal-50 dark:bg-teal-950/60 text-pine dark:text-teal-300 flex items-center justify-center shrink-0 mt-1">
+                    <Icon className="w-6 h-6" />
+                  </div>
+                  <div>
+                    <div className="flex items-center gap-2">
+                      <span className="text-xs font-heading font-bold text-pine dark:text-teal-400 uppercase tracking-wider">
+                        Module {m.num}
+                      </span>
+                    </div>
+                    <h3 className="text-2xl md:text-3xl font-heading font-extrabold text-foreground">
+                      {m.name}
+                    </h3>
+                    <p className="text-xs text-muted-foreground mt-0.5 font-medium">
+                      {m.subtitle}
+                    </p>
+                  </div>
+                </div>
+              </div>
+
+              <p className="text-sm text-muted-foreground font-body leading-relaxed max-w-3xl">
+                {m.description}
+              </p>
+
+              {/* Feature Grid */}
+              <div className="grid sm:grid-cols-2 gap-5">
+                {m.features.map((f) => (
+                  <div
+                    key={f.title}
+                    className="p-5 rounded-2xl bg-muted/40 border border-border/70 space-y-1.5"
+                  >
+                    <div className="flex items-center gap-2 font-heading font-bold text-sm text-foreground">
+                      <CheckCircle2 className="w-4 h-4 text-pine dark:text-teal-400 shrink-0" />
+                      <span>{f.title}</span>
+                    </div>
+                    <p className="text-xs text-muted-foreground font-body leading-relaxed pl-6">
+                      {f.desc}
+                    </p>
+                  </div>
+                ))}
+              </div>
+
+              {/* Ready Screenshot Area */}
+              <div className="rounded-2xl border border-dashed border-border bg-background/60 p-8 text-center">
+                <div className="max-w-md mx-auto space-y-2">
+                  <p className="text-xs font-heading font-bold text-foreground">
+                    {m.screenshotPlaceholder}
+                  </p>
+                  <p className="text-[11px] text-muted-foreground">
+                    System view showcasing live operational workflow.
+                  </p>
+                </div>
+              </div>
+            </div>
+          );
+        })}
+      </section>
+
+      {/* CTA Bottom Box */}
+      <section className="py-20 max-w-4xl mx-auto px-4 text-center">
+        <div className="rounded-3xl p-10 md:p-14 bg-pine text-white shadow-xl space-y-4">
+          <h2 className="text-3xl sm:text-4xl font-heading font-extrabold tracking-tight">
+            Deploy HRMS in Your Healthcare Facility
+          </h2>
+          <p className="text-sm md:text-base text-white/80 max-w-xl mx-auto font-body">
+            Schedule an on-site assessment with SwiftRev Technology Limited to review your hospital's billing and dual-tier pharmacy workflows.
+          </p>
+          <div className="pt-4 flex justify-center">
+            <Link
+              to="/contact"
+              className="px-8 py-3.5 rounded-full bg-white text-pine font-heading font-bold text-xs hover:bg-slate-100 transition shadow"
+            >
+              Contact Healthcare Solutions Team
+            </Link>
+          </div>
         </div>
       </section>
     </div>

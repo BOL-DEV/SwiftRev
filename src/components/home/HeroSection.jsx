@@ -1,107 +1,211 @@
 import React, { useState } from 'react';
 import { Link } from 'react-router-dom';
 import { motion } from 'framer-motion';
-import { ArrowRight, Heart, Home } from 'lucide-react';
+import {
+  ArrowRight,
+  Activity,
+  Building2,
+  Smartphone,
+  Cpu,
+  CheckCircle2,
+  Sparkles,
+  Layers
+} from 'lucide-react';
+import StatusBadge from '../shared/StatusBadge';
+
+const sectors = [
+  {
+    id: 'medical',
+    name: 'Medical & Healthcare',
+    badge: 'Live Flagship: HRMS',
+    status: 'live',
+    headline: 'Hospital Revenue Management System (HRMS)',
+    description: 'Our currently built and operating solution. Eliminates hospital revenue leakages, streamlines cashier operations, and provides real-time operational transparency for healthcare facilities.',
+    highlight: 'Currently operational in partner hospitals',
+    icon: Activity,
+  },
+  {
+    id: 'realestate',
+    name: 'Real Estate & Housing',
+    badge: 'In Pipeline',
+    status: 'pipeline',
+    headline: 'Agent-Free Housing & Property Management',
+    description: 'Modernizing residential and commercial real estate. Direct landlord-to-tenant tenancy agreements, automated rent management, and transparent property discovery.',
+    highlight: 'PropTech platform in architectural design',
+    icon: Building2,
+  },
+  {
+    id: 'pos',
+    name: 'Smart POS & Commerce',
+    badge: 'In Development',
+    status: 'development',
+    headline: 'Enterprise Point-of-Sale Hardware & Software',
+    description: 'Purpose-built smart POS terminals designed for high-frequency billing stations, hospital counters, pharmacies, and commercial merchants.',
+    highlight: 'Dedicated merchant & hospital terminals',
+    icon: Smartphone,
+  },
+];
 
 export default function HeroSection() {
-  const [hoveredSide, setHoveredSide] = useState(null);
+  const [activeSector, setActiveSector] = useState(sectors[0]);
 
   return (
-    <section className="relative min-h-screen flex items-center overflow-hidden pt-20">
-      {/* Background grid */}
-      <div className="absolute inset-0 bg-obsidian">
-        <div className="absolute inset-0 opacity-[0.03]" style={{
-          backgroundImage: 'linear-gradient(rgba(178,255,217,0.3) 0.5px, transparent 0.5px), linear-gradient(90deg, rgba(178,255,217,0.3) 0.5px, transparent 0.5px)',
-          backgroundSize: '60px 60px'
-        }} />
-        <div className="absolute top-1/4 left-1/4 w-96 h-96 bg-mint/5 rounded-full blur-[120px]" />
-        <div className="absolute bottom-1/4 right-1/4 w-96 h-96 bg-copper/5 rounded-full blur-[120px]" />
-      </div>
+    <section className="relative pt-32 pb-20 md:pt-40 md:pb-28 overflow-hidden">
+      {/* Background Ambient Glow */}
+      <div className="absolute top-1/4 left-1/2 -translate-x-1/2 w-[700px] h-[450px] bg-pine/5 dark:bg-teal-500/5 rounded-full blur-[140px] pointer-events-none" />
 
-      <div className="relative z-10 max-w-7xl mx-auto px-6 lg:px-8 w-full">
-        <div className="grid lg:grid-cols-2 gap-8 lg:gap-4 items-center min-h-[80vh]">
-          {/* Left content */}
+      <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 relative z-10">
+        <div className="text-center max-w-3xl mx-auto mb-14">
+          {/* Company Badge */}
           <motion.div
-            initial={{ opacity: 0, x: -40 }}
-            animate={{ opacity: 1, x: 0 }}
-            transition={{ duration: 0.8, ease: 'easeOut' }}
-            className="space-y-8"
+            initial={{ opacity: 0, y: 15 }}
+            animate={{ opacity: 1, y: 0 }}
+            transition={{ duration: 0.5 }}
+            className="inline-flex items-center gap-2 px-4 py-1.5 rounded-full bg-card border border-border shadow-xs mb-6"
           >
-            <div className="inline-flex items-center gap-2 px-4 py-2 rounded-full glass-card text-xs font-heading font-semibold tracking-wider uppercase">
-              <span className="w-2 h-2 rounded-full bg-mint animate-pulse" />
-              <span className="text-mint">Now Live</span>
-              <span className="text-muted-foreground">• Medical Finance, Housing & More</span>
-            </div>
-
-            <h1 className="font-heading font-extrabold text-4xl md:text-5xl lg:text-6xl xl:text-7xl text-limestone leading-[0.95]" style={{ letterSpacing: '-0.04em' }}>
-              One Platform.{' '}
-              <span className="text-mint">Every</span>
-              <br />
-              <span className="text-copper">Solution.</span>
-            </h1>
-
-            <p className="text-muted-foreground text-lg md:text-xl leading-relaxed max-w-lg font-body">
-              SwiftRev helps hospitals get paid faster, helps people find homes without agents, and provides the tech tools healthcare facilities need to run smoothly. One company. Everything you need.
-            </p>
-
-            <div className="flex flex-col sm:flex-row gap-4">
-              <Link
-                to="/medical-finance"
-                className="group inline-flex items-center justify-center gap-3 px-8 py-4 bg-mint text-background font-heading font-bold rounded-full hover:opacity-90 transition-all"
-              >
-                <Heart className="w-5 h-5" />
-                Medical Finance
-                <ArrowRight className="w-4 h-4 group-hover:translate-x-1 transition-transform" />
-              </Link>
-              <Link
-                to="/housing-solutions"
-                className="group inline-flex items-center justify-center gap-3 px-8 py-4 bg-copper text-white font-heading font-bold rounded-full hover:opacity-90 transition-all"
-              >
-                <Home className="w-5 h-5" />
-                Housing Solutions
-                <ArrowRight className="w-4 h-4 group-hover:translate-x-1 transition-transform" />
-              </Link>
-            </div>
+            <span className="w-2 h-2 rounded-full bg-pine dark:bg-teal-400"></span>
+            <span className="text-xs font-heading font-semibold uppercase tracking-wider text-muted-foreground">
+              SwiftRev Technology Limited • Multi-Sector Innovation
+            </span>
           </motion.div>
 
-          {/* Right - Split images */}
-          <motion.div
-            initial={{ opacity: 0, x: 40 }}
-            animate={{ opacity: 1, x: 0 }}
-            transition={{ duration: 0.8, delay: 0.2, ease: 'easeOut' }}
-            className="relative hidden lg:block"
+          <motion.h1
+            initial={{ opacity: 0, y: 20 }}
+            animate={{ opacity: 1, y: 0 }}
+            transition={{ duration: 0.6, delay: 0.1 }}
+            className="text-4xl sm:text-5xl lg:text-6xl font-heading font-extrabold text-foreground tracking-tight leading-[1.08]"
           >
-            <div className="grid grid-cols-2 gap-4 h-[560px]">
-              <Link
-                to="/medical-finance"
-                onMouseEnter={() => setHoveredSide('medical')}
-                onMouseLeave={() => setHoveredSide(null)}
-                className={`relative rounded-2xl overflow-hidden transition-all duration-700 ${hoveredSide === 'housing' ? 'scale-95 opacity-60' : hoveredSide === 'medical' ? 'scale-105' : ''}`}
-              >
-                <img src="/images/medical-finance-hero.png" alt="Medical Finance" className="w-full h-full object-cover" />
-                <div className="absolute inset-0 bg-gradient-to-t from-background/80 via-background/20 to-transparent" />
-                <div className="absolute bottom-6 left-6 right-6">
-                  <span className="text-mint text-xs font-heading font-bold tracking-wider uppercase">Medical Finance</span>
-                  <p className="text-limestone text-sm mt-1 font-body">Wellness-first funding</p>
-                </div>
-              </Link>
+            Building Specialized Technology Across{' '}
+            <span className="text-pine dark:text-teal-400">Vital Sectors</span>
+          </motion.h1>
 
-              <Link
-                to="/housing-solutions"
-                onMouseEnter={() => setHoveredSide('housing')}
-                onMouseLeave={() => setHoveredSide(null)}
-                className={`relative rounded-2xl overflow-hidden transition-all duration-700 ${hoveredSide === 'medical' ? 'scale-95 opacity-60' : hoveredSide === 'housing' ? 'scale-105' : ''}`}
-              >
-                <img src="/images/housing-hero.png" alt="Housing Solutions" className="w-full h-full object-cover" />
-                <div className="absolute inset-0 bg-gradient-to-t from-background/80 via-background/20 to-transparent" />
-                <div className="absolute bottom-6 left-6 right-6">
-                  <span className="text-copper text-xs font-heading font-bold tracking-wider uppercase">Housing</span>
-                  <p className="text-limestone text-sm mt-1 font-body">Agent-free living</p>
-                </div>
-              </Link>
-            </div>
+          <motion.p
+            initial={{ opacity: 0, y: 20 }}
+            animate={{ opacity: 1, y: 0 }}
+            transition={{ duration: 0.6, delay: 0.2 }}
+            className="mt-6 text-base sm:text-lg text-muted-foreground font-body leading-relaxed max-w-2xl mx-auto"
+          >
+            SwiftRev develops high-impact digital solutions that solve real industry bottlenecks — from <strong>healthcare revenue and medical finance</strong> to <strong>real estate technology</strong>, <strong>smart POS terminals</strong>, and enterprise software.
+          </motion.p>
+
+          <motion.div
+            initial={{ opacity: 0, y: 20 }}
+            animate={{ opacity: 1, y: 0 }}
+            transition={{ duration: 0.6, delay: 0.3 }}
+            className="mt-8 flex flex-wrap items-center justify-center gap-3.5"
+          >
+            <Link
+              to="/works"
+              className="inline-flex items-center gap-2 px-8 py-3.5 bg-pine text-white rounded-full font-heading font-bold text-xs hover:bg-pine-hover shadow-xs transition-all duration-200"
+            >
+              <span>Explore Our Works</span>
+              <ArrowRight className="w-3.5 h-3.5" />
+            </Link>
+
+            <Link
+              to="/about"
+              className="inline-flex items-center gap-2 px-7 py-3.5 border border-border bg-card hover:bg-muted text-foreground rounded-full font-heading font-semibold text-xs transition-all"
+            >
+              About the Company
+            </Link>
           </motion.div>
         </div>
+
+        {/* Interactive Sector Switcher Bento Box */}
+        <motion.div
+          initial={{ opacity: 0, y: 30 }}
+          animate={{ opacity: 1, y: 0 }}
+          transition={{ duration: 0.7, delay: 0.35 }}
+          className="rounded-3xl bg-card border border-border shadow-lg p-6 md:p-8"
+        >
+          {/* Sector Tabs */}
+          <div className="flex flex-wrap items-center gap-2 pb-6 border-b border-border">
+            <span className="text-xs font-heading font-bold uppercase tracking-wider text-muted-foreground mr-2">
+              Explore Sectors:
+            </span>
+            {sectors.map((s) => {
+              const Icon = s.icon;
+              const isSelected = activeSector.id === s.id;
+              return (
+                <button
+                  key={s.id}
+                  onClick={() => setActiveSector(s)}
+                  className={`inline-flex items-center gap-2 px-4 py-2 rounded-full text-xs font-heading font-semibold transition-all ${
+                    isSelected
+                      ? 'bg-pine text-white shadow-xs'
+                      : 'bg-muted/60 text-muted-foreground hover:text-foreground hover:bg-muted'
+                  }`}
+                >
+                  <Icon className="w-3.5 h-3.5" />
+                  <span>{s.name}</span>
+                  {s.id === 'medical' && (
+                    <span className={`text-[10px] uppercase font-bold px-1.5 py-0.2 rounded-full ${
+                      isSelected ? 'bg-white/20 text-white' : 'bg-emerald-100 text-emerald-800 dark:bg-emerald-950 dark:text-emerald-300'
+                    }`}>
+                      Live
+                    </span>
+                  )}
+                </button>
+              );
+            })}
+          </div>
+
+          {/* Active Sector Showcase Content */}
+          <div className="grid lg:grid-cols-12 gap-8 items-center pt-6">
+            <div className="lg:col-span-7 space-y-4">
+              <div className="flex items-center gap-3">
+                <StatusBadge status={activeSector.status} size="sm" />
+                <span className="text-xs font-semibold text-muted-foreground">
+                  {activeSector.name}
+                </span>
+              </div>
+
+              <h2 className="text-2xl sm:text-3xl font-heading font-extrabold text-foreground">
+                {activeSector.headline}
+              </h2>
+
+              <p className="text-sm text-muted-foreground font-body leading-relaxed max-w-xl">
+                {activeSector.description}
+              </p>
+
+              <div className="pt-2 flex items-center gap-2 text-xs font-semibold text-pine dark:text-teal-400">
+                <CheckCircle2 className="w-4 h-4 shrink-0" />
+                <span>{activeSector.highlight}</span>
+              </div>
+            </div>
+
+            {/* Quick Context Card */}
+            <div className="lg:col-span-5 p-6 rounded-2xl bg-muted/40 border border-border/80 space-y-4">
+              <div className="flex items-center justify-between">
+                <span className="text-[10px] uppercase font-bold tracking-wider text-muted-foreground">
+                  Sector Overview
+                </span>
+                <span className="text-xs font-semibold text-foreground">
+                  SwiftRev Technology
+                </span>
+              </div>
+
+              <div className="space-y-2 text-xs">
+                <div className="p-3 rounded-xl bg-card border border-border">
+                  <p className="text-muted-foreground text-[11px]">Primary Focus:</p>
+                  <p className="font-semibold text-foreground mt-0.5">{activeSector.headline}</p>
+                </div>
+                <div className="p-3 rounded-xl bg-card border border-border">
+                  <p className="text-muted-foreground text-[11px]">Current Status:</p>
+                  <p className="font-semibold text-foreground mt-0.5">{activeSector.badge}</p>
+                </div>
+              </div>
+
+              <Link
+                to="/works"
+                className="inline-flex items-center gap-1.5 text-xs font-bold text-pine dark:text-teal-400 hover:underline pt-1"
+              >
+                <span>Learn more in Our Works</span>
+                <ArrowRight className="w-3 h-3" />
+              </Link>
+            </div>
+          </div>
+        </motion.div>
       </div>
     </section>
   );

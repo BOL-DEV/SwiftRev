@@ -1,29 +1,31 @@
 import React, { useState } from 'react';
 import { motion, AnimatePresence } from 'framer-motion';
 import { Link } from 'react-router-dom';
-import { ArrowLeft, ArrowRight, CheckCircle2 } from 'lucide-react';
+import { ArrowLeft, ArrowRight, CheckCircle2, ShieldCheck, Activity } from 'lucide-react';
 import StepIndicator from '../components/onboarding/StepIndicator';
 import Step0TierSelection from '../components/onboarding/Step0TierSelection';
 import Step1FacilityDetails from '../components/onboarding/Step1FacilityDetails';
 import Step2Documentation from '../components/onboarding/Step2Documentation';
 import Step3RevenuePreferences from '../components/onboarding/Step3RevenuePreferences';
 import Step4Review from '../components/onboarding/Step4Review';
+import SwiftRevLogo from '../components/shared/SwiftRevLogo';
+import ThemeToggle from '../components/shared/ThemeToggle';
 
 const TOTAL_STEPS = 5;
 
 const stepTitles = {
-  1: { title: 'Choose Your Tier', sub: "Select the service package that matches your facility's needs." },
-  2: { title: 'Facility Details', sub: 'Tell us about your hospital or healthcare facility.' },
-  3: { title: 'Financial Documentation', sub: 'Upload required documents for verification and compliance.' },
-  4: { title: 'Revenue Preferences', sub: 'Configure how you collect and receive revenue.' },
-  5: { title: 'Review & Submit', sub: 'Confirm all information before submitting your application.' },
+  1: { title: 'Choose Your Tier', sub: "Select the service package that matches your facility's operational size." },
+  2: { title: 'Facility Details', sub: 'Tell us about your hospital, clinic, or healthcare center.' },
+  3: { title: 'Compliance Documentation', sub: 'Upload required documents for verification and KYC compliance.' },
+  4: { title: 'Revenue & Bank Preferences', sub: 'Configure collection channels and automated settlement bank accounts.' },
+  5: { title: 'Review & Submit', sub: 'Confirm all details before dispatching to SwiftRev onboarding team.' },
 };
 
 export default function HospitalOnboarding() {
   const [step, setStep] = useState(1);
   const [submitted, setSubmitted] = useState(false);
 
-  const [selectedTier, setSelectedTier] = useState('');
+  const [selectedTier, setSelectedTier] = useState('pro');
 
   const [facilityData, setFacilityData] = useState({
     facilityName: '', facilityType: '', regNumber: '', yearEstablished: '',
@@ -36,68 +38,83 @@ export default function HospitalOnboarding() {
   });
 
   const [prefsData, setPrefsData] = useState({
-    collectionChannels: [], settlementBank: '', accountNumber: '',
-    accountName: '', reportingFrequency: '', specialInstructions: '',
+    collectionChannels: ['cash', 'pos'], settlementBank: 'Zenith Bank', accountNumber: '1012345678',
+    accountName: 'Hospital Operations Treasury', reportingFrequency: 'daily', specialInstructions: '',
   });
 
   const canProceed = () => {
     if (step === 1) return !!selectedTier;
     if (step === 2) return facilityData.facilityName && facilityData.facilityType && facilityData.email && facilityData.phone && facilityData.contactName;
-    if (step === 3) return docsData.cacCert && docsData.taxId && docsData.bankStatement && docsData.licenseDoc && docsData.directorId;
-    if (step === 4) return prefsData.collectionChannels.length > 0 && prefsData.settlementBank && prefsData.accountNumber && prefsData.reportingFrequency;
+    if (step === 3) return true; // allow previewing without blocking file upload
+    if (step === 4) return prefsData.collectionChannels.length > 0 && prefsData.settlementBank && prefsData.accountNumber;
     return true;
   };
 
-  const tierLabel = { elite: 'Elite', pro: 'Pro', platinum: 'Platinum' }[selectedTier] || '';
+  const tierLabel = { elite: 'Elite', pro: 'Pro', platinum: 'Platinum' }[selectedTier] || 'Pro';
 
   if (submitted) {
     return (
-      <div className="min-h-screen flex items-center justify-center" style={{ background: '#dce9f3' }}>
+      <div className="min-h-screen bg-background flex items-center justify-center p-4">
         <motion.div
           initial={{ opacity: 0, scale: 0.9 }}
           animate={{ opacity: 1, scale: 1 }}
           transition={{ duration: 0.5 }}
-          className="bg-white rounded-3xl shadow-xl p-12 max-w-md w-full mx-4 text-center"
+          className="bg-card border border-border rounded-3xl shadow-xl p-8 md:p-12 max-w-md w-full text-center"
         >
-          <div className="w-16 h-16 rounded-full bg-green-100 flex items-center justify-center mx-auto mb-6">
-            <CheckCircle2 className="w-8 h-8 text-green-500" />
+          <div className="w-16 h-16 rounded-full bg-emerald-100 dark:bg-emerald-950 flex items-center justify-center mx-auto mb-6 text-emerald-600 dark:text-emerald-400">
+            <CheckCircle2 className="w-8 h-8" />
           </div>
-          <h2 className="text-2xl font-bold text-slate-800 font-heading mb-3">Application Submitted!</h2>
-          <p className="text-slate-500 text-sm leading-relaxed mb-4">
-            Thank you, <strong>{facilityData.facilityName}</strong>. Your <strong>{tierLabel} plan</strong> application has been received.
+          <h2 className="text-2xl font-bold text-foreground font-heading mb-2">Application Submitted!</h2>
+          <p className="text-muted-foreground text-sm leading-relaxed mb-4">
+            Thank you, <strong>{facilityData.facilityName || 'Facility Partner'}</strong>. Your <strong>{tierLabel} plan</strong> onboarding application has been logged.
           </p>
-          <p className="text-slate-400 text-xs leading-relaxed mb-8">
-            Our team will review your application and reach out within <strong>2–3 business days</strong> to confirm onboarding.
+          <p className="text-muted-foreground text-xs leading-relaxed mb-8">
+            A SwiftRev healthcare financial manager will review your facility details and contact you within <strong>24–48 hours</strong>.
           </p>
-          <Link
-            to="/hospital-login"
-            className="inline-flex items-center gap-2 px-6 py-3 bg-blue-500 hover:bg-blue-600 text-white text-sm font-semibold rounded-xl transition-colors"
-          >
-            Go to Hospital Login
-          </Link>
+          <div className="space-y-2.5">
+            <Link
+              to="/hrms-demo"
+              className="block w-full py-3 bg-pine text-white text-xs font-heading font-bold rounded-xl hover:bg-pine-hover transition-colors shadow-xs"
+            >
+              Explore Live HRMS Admin Demo
+            </Link>
+            <Link
+              to="/"
+              className="block w-full py-2.5 border border-border text-foreground text-xs font-semibold rounded-xl hover:bg-muted transition-colors"
+            >
+              Return to SwiftRev Home
+            </Link>
+          </div>
         </motion.div>
       </div>
     );
   }
 
   return (
-    <div className="min-h-screen flex" style={{ background: '#dce9f3' }}>
+    <div className="min-h-screen bg-background flex text-foreground">
       {/* Left Panel — Form */}
       <div className="w-full lg:w-3/5 flex items-start justify-center p-6 md:p-12 overflow-y-auto">
         <div className="w-full max-w-xl py-6">
-          <Link to="/hospital-login" className="inline-flex items-center gap-1.5 text-xs text-slate-400 hover:text-slate-600 mb-8 transition-colors">
-            <ArrowLeft className="w-3.5 h-3.5" /> Back to Login
-          </Link>
+          <div className="flex items-center justify-between mb-8">
+            <Link to="/hrms" className="inline-flex items-center gap-1.5 text-xs text-muted-foreground hover:text-foreground transition-colors">
+              <ArrowLeft className="w-3.5 h-3.5" /> Back to HRMS Overview
+            </Link>
+            <ThemeToggle />
+          </div>
 
-          <p className="text-xs font-semibold tracking-[0.2em] uppercase text-slate-400 mb-1">SwiftRev</p>
-          <h1 className="text-2xl font-bold text-slate-800 font-heading mb-8">Hospital Onboarding</h1>
+          <p className="text-xs font-semibold tracking-[0.2em] uppercase text-pine dark:text-teal-400 mb-1">
+            SwiftRev Technology Limited
+          </p>
+          <h1 className="text-3xl font-extrabold text-foreground font-heading mb-8">Hospital Onboarding</h1>
 
           <StepIndicator current={step} total={TOTAL_STEPS} />
 
           <div className="mb-6">
-            <p className="text-xs font-semibold tracking-[0.15em] uppercase text-blue-500 mb-1">Step {step} of {TOTAL_STEPS}</p>
-            <h2 className="text-xl font-bold text-slate-800 font-heading">{stepTitles[step].title}</h2>
-            <p className="text-sm text-slate-500 mt-1">{stepTitles[step].sub}</p>
+            <p className="text-xs font-semibold tracking-[0.15em] uppercase text-pine dark:text-teal-400 mb-1">
+              Step {step} of {TOTAL_STEPS}
+            </p>
+            <h2 className="text-xl font-bold text-foreground font-heading">{stepTitles[step].title}</h2>
+            <p className="text-xs text-muted-foreground mt-1">{stepTitles[step].sub}</p>
           </div>
 
           <AnimatePresence mode="wait">
@@ -107,7 +124,7 @@ export default function HospitalOnboarding() {
               animate={{ opacity: 1, x: 0 }}
               exit={{ opacity: 0, x: -20 }}
               transition={{ duration: 0.25 }}
-              className="bg-white rounded-2xl shadow-sm p-6 md:p-8"
+              className="bg-card border border-border rounded-2xl shadow-xs p-6 md:p-8"
             >
               {step === 1 && <Step0TierSelection selected={selectedTier} onSelect={setSelectedTier} />}
               {step === 2 && <Step1FacilityDetails data={facilityData} onChange={setFacilityData} />}
@@ -121,25 +138,25 @@ export default function HospitalOnboarding() {
             <button
               onClick={() => setStep(s => s - 1)}
               disabled={step === 1}
-              className="inline-flex items-center gap-2 px-5 py-2.5 rounded-xl border border-slate-200 text-sm font-semibold text-slate-600 hover:bg-slate-50 transition-colors disabled:opacity-30 disabled:cursor-not-allowed"
+              className="inline-flex items-center gap-2 px-5 py-2.5 rounded-xl border border-border text-xs font-semibold text-foreground hover:bg-muted transition-colors disabled:opacity-30 disabled:cursor-not-allowed"
             >
-              <ArrowLeft className="w-4 h-4" /> Back
+              <ArrowLeft className="w-3.5 h-3.5" /> Back
             </button>
 
             {step < TOTAL_STEPS ? (
               <button
                 onClick={() => setStep(s => s + 1)}
                 disabled={!canProceed()}
-                className="inline-flex items-center gap-2 px-6 py-2.5 rounded-xl bg-blue-500 hover:bg-blue-600 text-white text-sm font-semibold transition-colors disabled:opacity-40 disabled:cursor-not-allowed"
+                className="inline-flex items-center gap-2 px-6 py-2.5 rounded-xl bg-pine text-white text-xs font-heading font-bold hover:bg-pine-hover transition-colors shadow-xs disabled:opacity-40 disabled:cursor-not-allowed"
               >
-                Continue <ArrowRight className="w-4 h-4" />
+                Continue <ArrowRight className="w-3.5 h-3.5" />
               </button>
             ) : (
               <button
                 onClick={() => setSubmitted(true)}
-                className="inline-flex items-center gap-2 px-6 py-2.5 rounded-xl bg-green-500 hover:bg-green-600 text-white text-sm font-semibold transition-colors"
+                className="inline-flex items-center gap-2 px-6 py-2.5 rounded-xl bg-pine text-white text-xs font-heading font-bold hover:bg-pine-hover transition-colors shadow-xs"
               >
-                Submit Application <CheckCircle2 className="w-4 h-4" />
+                Submit Application <CheckCircle2 className="w-3.5 h-3.5" />
               </button>
             )}
           </div>
@@ -147,29 +164,32 @@ export default function HospitalOnboarding() {
       </div>
 
       {/* Right Panel */}
-      <div
-        className="hidden lg:flex w-2/5 items-center justify-center relative overflow-hidden sticky top-0 h-screen"
-        style={{ background: 'linear-gradient(135deg, #c8dff0 0%, #ddeef8 50%, #e8f4fc 100%)' }}
-      >
-        <div className="absolute top-12 right-16 w-32 h-32 rounded-full bg-white/30 blur-sm" />
-        <div className="absolute bottom-24 left-16 w-20 h-20 rounded-full bg-blue-200/50" />
-        <div className="absolute top-1/3 left-1/2 -translate-x-1/2 w-48 h-48 rounded-full bg-white/20 blur-xl" />
+      <div className="hidden lg:flex w-2/5 bg-card border-l border-border items-center justify-center relative overflow-hidden sticky top-0 h-screen p-10">
+        <div className="relative z-10 text-center max-w-sm">
+          <SwiftRevLogo className="justify-center mb-6" showTagline={true} />
 
-        <div className="relative z-10 text-center px-10">
-          <img
-            src="/swiftRev.png"
-            alt="SwiftRev Logo"
-            className="w-48 mx-auto mb-8 drop-shadow-xl"
-          />
-          <h3 className="text-slate-700 font-bold text-lg font-heading mb-2">Revenue Management, Simplified.</h3>
-          <p className="text-slate-500 text-sm leading-relaxed mb-8">
-            Join healthcare facilities across Nigeria using SwiftRev to eliminate revenue leakages and gain full financial control.
+          <h3 className="text-foreground font-extrabold text-xl font-heading mb-2">
+            Hospital Revenue, 100% Accounted.
+          </h3>
+          <p className="text-muted-foreground text-xs leading-relaxed mb-8 font-body">
+            Join healthcare facilities across Nigeria using SwiftRev HRMS to eliminate leakages, reconcile cash &amp; POS, and restore financial transparency.
           </p>
 
-          <div className="space-y-2">
+          <div className="space-y-2 text-left">
             {['Choose Your Tier', 'Facility Details', 'Documentation', 'Revenue Preferences', 'Review & Submit'].map((label, i) => (
-              <div key={label} className={`flex items-center gap-3 px-4 py-2 rounded-full text-xs font-semibold transition-all ${step === i + 1 ? 'bg-blue-500 text-white shadow-md' : step > i + 1 ? 'bg-white/60 text-slate-500' : 'bg-white/30 text-slate-400'}`}>
-                <span className={`w-5 h-5 rounded-full flex items-center justify-center text-xs font-bold shrink-0 ${step === i + 1 ? 'bg-white text-blue-500' : step > i + 1 ? 'bg-green-400 text-white' : 'bg-white/50 text-slate-400'}`}>
+              <div
+                key={label}
+                className={`flex items-center gap-3 px-4 py-2.5 rounded-xl text-xs font-semibold transition-all ${
+                  step === i + 1
+                    ? 'bg-pine text-white shadow-xs'
+                    : step > i + 1
+                    ? 'bg-emerald-50 text-emerald-800 dark:bg-emerald-950 dark:text-emerald-300'
+                    : 'bg-muted text-muted-foreground'
+                }`}
+              >
+                <span className={`w-5 h-5 rounded-full flex items-center justify-center text-[11px] font-bold shrink-0 ${
+                  step === i + 1 ? 'bg-white text-pine' : step > i + 1 ? 'bg-emerald-500 text-white' : 'bg-card text-muted-foreground'
+                }`}>
                   {step > i + 1 ? '✓' : i + 1}
                 </span>
                 {label}
@@ -177,12 +197,11 @@ export default function HospitalOnboarding() {
             ))}
           </div>
 
-          {selectedTier && (
-            <div className="mt-6 px-5 py-3 rounded-2xl bg-white/60 text-left">
-              <p className="text-xs text-slate-400 font-semibold uppercase tracking-wider mb-1">Selected Plan</p>
-              <p className="text-slate-700 font-bold text-base font-heading">{tierLabel} Plan</p>
-            </div>
-          )}
+          <div className="mt-8 p-4 rounded-2xl bg-muted/60 border border-border text-left">
+            <p className="text-[10px] text-muted-foreground font-bold uppercase tracking-wider">Selected Solution</p>
+            <p className="text-foreground font-heading font-extrabold text-sm mt-0.5">HRMS • {tierLabel} Tier</p>
+            <p className="text-[11px] text-muted-foreground mt-1">Includes cashier stations, POS terminals &amp; T+0 daily bank sweep.</p>
+          </div>
         </div>
       </div>
     </div>

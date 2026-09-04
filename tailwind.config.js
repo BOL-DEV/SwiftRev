@@ -63,6 +63,32 @@ module.exports = {
   				'accent-foreground': 'hsl(var(--sidebar-accent-foreground))',
   				border: 'hsl(var(--sidebar-border))',
   				ring: 'hsl(var(--sidebar-ring))'
+  			},
+  			pine: {
+  				DEFAULT: '#0D5C52',
+  				50: '#F0FDF9',
+  				100: '#CCFBF1',
+  				200: '#99F6E4',
+  				300: '#5EEAD4',
+  				400: '#2DD4BF',
+  				500: '#14B8A6',
+  				600: '#0D9488',
+  				700: '#0F766E',
+  				800: '#0D5C52',
+  				900: '#094039',
+  				950: '#042723',
+  			},
+  			sage: {
+  				50: '#F7FAF8',
+  				100: '#F4F8F6',
+  				200: '#E6F0EC',
+  				300: '#D5E4DE',
+  				400: '#A9C4BB',
+  			},
+  			mint: {
+  				DEFAULT: '#2DD4BF',
+  				light: '#D2F5EC',
+  				dark: '#0D9488',
   			}
   		},
   		keyframes: {
