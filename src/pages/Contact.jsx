@@ -1,11 +1,10 @@
 import React, { useState } from 'react';
 import { motion } from 'framer-motion';
-import { Mail, Phone, MapPin, Send, CheckCircle2, ShieldCheck } from 'lucide-react';
+import { Mail, MapPin, Send, CheckCircle2, ShieldCheck } from 'lucide-react';
 import { toast } from 'sonner';
 
 const contactInfo = [
-  { icon: Mail, label: 'Official Email', value: 'me@swiftrevenue.me' },
-  { icon: Phone, label: 'Direct Line', value: '+234 916 048 2233' },
+  { icon: Mail, label: 'Official Email', value: 'swiftrevtech@gmail.com', href: 'mailto:swiftrevtech@gmail.com' },
   { icon: MapPin, label: 'Corporate Office', value: '7 Prince Ajadi Olasunkanmi St, Lafenwa, Ogun State, Nigeria' },
 ];
 
@@ -43,7 +42,7 @@ export default function Contact() {
           {/* Left Info (5 cols) */}
           <div className="lg:col-span-5 space-y-6">
             <div className="rounded-3xl p-8 bg-card border border-border shadow-sm space-y-6">
-              <h2 className="text-xl font-heading font-bold text-foreground">SwiftRev Technology Limited</h2>
+              <h2 className="text-xl font-heading font-bold text-foreground">SwiftRev And Technology Limited</h2>
               <p className="text-xs text-muted-foreground leading-relaxed font-body">
                 We work directly with Chief Medical Directors, hospital boards, financial institutions, and partners across Nigeria.
               </p>
@@ -56,7 +55,16 @@ export default function Contact() {
                     </div>
                     <div>
                       <p className="font-semibold text-foreground">{info.label}</p>
-                      <p className="text-muted-foreground mt-0.5">{info.value}</p>
+                      {info.href ? (
+                        <a
+                          href={info.href}
+                          className="text-muted-foreground hover:text-foreground hover:underline mt-0.5 block break-all"
+                        >
+                          {info.value}
+                        </a>
+                      ) : (
+                        <p className="text-muted-foreground mt-0.5 leading-relaxed">{info.value}</p>
+                      )}
                     </div>
                   </div>
                 ))}
@@ -84,7 +92,7 @@ export default function Contact() {
                   </div>
                   <h3 className="text-xl font-heading font-bold text-foreground">Inquiry Submitted Successfully</h3>
                   <p className="text-xs text-muted-foreground max-w-sm mx-auto font-body">
-                    Thank you. An operations specialist from SwiftRev Technology Limited will review your note and contact you shortly.
+                    Thank you. An operations specialist from SwiftRev And Technology Limited will review your note and contact you shortly.
                   </p>
                   <button
                     onClick={() => { setSubmitted(false); setForm({ name: '', email: '', phone: '', solution: 'hrms', message: '' }); }}
@@ -139,7 +147,8 @@ export default function Contact() {
                       onChange={(e) => setForm({ ...form, solution: e.target.value })}
                       className="w-full px-4 py-2.5 rounded-xl border border-border bg-background text-foreground focus:outline-none focus:ring-2 focus:ring-pine/30"
                     >
-                      <option value="hrms">HRMS — Hospital Revenue Management (Live Product)</option>
+                      <option value="hrms">HRMS — Health Revenue Management System (Live Product)</option>
+                      <option value="emr">EMR — Electronic Medical Record (Planning Phase)</option>
                       <option value="pos">Smart POS &amp; Fintech Infrastructure</option>
                       <option value="realestate">Real Estate &amp; Housing Solutions</option>
                       <option value="corporate">General Partnership / Investor Relations</option>

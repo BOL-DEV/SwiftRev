@@ -5,7 +5,7 @@ export default function SwiftRevLogo({ className = "h-20 md:h-24", showTagline =
     <div className="flex items-center select-none">
       <img
         src="/swiftRev.png"
-        alt="SwiftRev Technology Limited"
+        alt="SwiftRev And Technology Limited"
         className={`w-auto object-contain transition-transform hover:scale-105 ${className}`}
       />
     </div>

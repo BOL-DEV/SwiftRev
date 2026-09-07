@@ -12,7 +12,7 @@ const ceoData = {
   focusAreas: ['Corporate Strategy', 'Healthcare & HRMS', 'Capital Allocation', 'Enterprise Partnerships'],
   bio: [
     "Ajadi Rilwan Ayobami is a visionary entrepreneur and enterprise strategist leading SwiftRev's mission to bridge critical operational, financial, and revenue governance gaps across Africa's high-impact sectors.",
-    "With an extensive background in enterprise technology architecture and institutional partnerships, he steers corporate strategy, capital allocation, and multi-sector product roadmaps spanning Healthcare Revenue Management Systems (HRMS), smart point-of-sale hardware, and modern proptech solutions.",
+    "With an extensive background in enterprise technology architecture and institutional partnerships, he steers corporate strategy, capital allocation, and multi-sector product roadmaps spanning Health Revenue Management System (HRMS), smart point-of-sale hardware, and modern proptech solutions.",
   ],
   socials: {
     linkedin: 'https://linkedin.com',

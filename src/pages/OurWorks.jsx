@@ -8,7 +8,10 @@ import {
   Building,
   CreditCard,
   FileText,
-  Lock
+  Lock,
+  Stethoscope,
+  Activity,
+  ClipboardList
 } from 'lucide-react';
 import StatusBadge from '../components/shared/StatusBadge';
 
@@ -31,7 +34,7 @@ export default function OurWorks() {
               <span className="text-pine dark:text-teal-400">Critical Sectors</span>
             </h1>
             <p className="mt-6 text-base md:text-lg text-muted-foreground max-w-2xl mx-auto">
-              SwiftRev Technology Limited develops enterprise software systems across healthcare operations, real estate, and point-of-sale commerce.
+              SwiftRev And Technology Limited develops enterprise software systems across healthcare operations, clinical records, real estate, and point-of-sale commerce.
             </p>
           </motion.div>
         </div>
@@ -51,7 +54,7 @@ export default function OurWorks() {
               </div>
 
               <h2 className="text-3xl md:text-4xl font-heading font-extrabold text-foreground">
-                HRMS — Hospital Revenue Management System
+                HRMS — Health Revenue Management System
               </h2>
 
               <p className="text-sm md:text-base text-muted-foreground leading-relaxed">
@@ -71,7 +74,57 @@ export default function OurWorks() {
           </div>
         </div>
 
-        {/* ================= SOLUTION 2: FINTECH & POS ================= */}
+        {/* ================= SOLUTION 2: EMR (HEALTHCARE - IN PLANNING) ================= */}
+        <div className="rounded-3xl p-8 md:p-12 bg-card border border-border shadow-xs">
+          <div className="flex flex-col lg:flex-row items-start lg:items-center justify-between gap-6 pb-6 border-b border-border">
+            <div>
+              <div className="flex items-center gap-3 mb-3">
+                <StatusBadge status="planning" size="md" />
+                <span className="text-xs font-semibold uppercase tracking-wider text-muted-foreground">
+                  Clinical Healthcare Technology &amp; Patient Charts
+                </span>
+              </div>
+              <h2 className="text-2xl md:text-3xl font-heading font-extrabold text-foreground">
+                EMR — Electronic Medical Record
+              </h2>
+              <p className="mt-2 text-sm text-muted-foreground max-w-2xl leading-relaxed">
+                Next-generation digital clinical charting and longitudinal patient record system currently in active architecture and planning. Designed to integrate natively with SwiftRev HRMS for seamless, automated cross-departmental care delivery and billing sync.
+              </p>
+            </div>
+
+            <span className="px-3.5 py-1.5 rounded-full bg-blue-50 dark:bg-blue-950/40 text-blue-700 dark:text-blue-300 text-xs font-semibold border border-blue-200 dark:border-blue-800/50 shrink-0">
+              Under Planning Phase
+            </span>
+          </div>
+
+          <div className="grid md:grid-cols-3 gap-6 pt-6 text-xs">
+            <div className="p-5 rounded-2xl bg-muted/30 border border-border/70 space-y-2">
+              <Stethoscope className="w-5 h-5 text-blue-600 dark:text-blue-400" />
+              <h4 className="font-heading font-bold text-sm text-foreground">Digital Clinical Consultations</h4>
+              <p className="text-muted-foreground leading-relaxed">
+                Longitudinal patient health records, vital sign tracking, physician clinical notes, and standardized diagnosis coding.
+              </p>
+            </div>
+
+            <div className="p-5 rounded-2xl bg-muted/30 border border-border/70 space-y-2">
+              <Activity className="w-5 h-5 text-blue-600 dark:text-blue-400" />
+              <h4 className="font-heading font-bold text-sm text-foreground">Direct HRMS Order Sync</h4>
+              <p className="text-muted-foreground leading-relaxed">
+                Prescriptions, laboratory orders, and radiology requisitions automatically dispatch to pharmacy and billing queues without paper slips.
+              </p>
+            </div>
+
+            <div className="p-5 rounded-2xl bg-muted/30 border border-border/70 space-y-2">
+              <ClipboardList className="w-5 h-5 text-blue-600 dark:text-blue-400" />
+              <h4 className="font-heading font-bold text-sm text-foreground">Confidentiality &amp; Access Control</h4>
+              <p className="text-muted-foreground leading-relaxed">
+                NDPR-compliant role-based security ensuring medical charts are accessible only by authorized consulting clinicians and ward nurses.
+              </p>
+            </div>
+          </div>
+        </div>
+
+        {/* ================= SOLUTION 3: FINTECH & POS ================= */}
         <div className="rounded-3xl p-8 md:p-12 bg-card border border-border shadow-xs">
           <div className="flex flex-col lg:flex-row items-start lg:items-center justify-between gap-6 pb-6 border-b border-border">
             <div>
@@ -176,7 +229,7 @@ export default function OurWorks() {
       <section className="py-16 max-w-4xl mx-auto px-4 text-center">
         <div className="rounded-3xl p-10 md:p-12 bg-pine text-white shadow-xl space-y-3">
           <h2 className="text-3xl font-heading font-extrabold tracking-tight">
-            Partner With SwiftRev Technology Limited
+            Partner With SwiftRev And Technology Limited
           </h2>
           <p className="text-sm text-white/80 max-w-lg mx-auto leading-relaxed">
             Get in touch with our team to discuss hospital deployment for HRMS or collaborate on our upcoming solutions.

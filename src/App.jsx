@@ -13,7 +13,6 @@ import OurWorks from './pages/OurWorks';
 import MedicalFinance from './pages/MedicalFinance';
 import HRMSDashboardPage from './pages/HRMSDashboardPage';
 import HospitalOnboarding from './pages/HospitalOnboarding';
-import HospitalLogin from './pages/HospitalLogin';
 import About from './pages/About';
 import Careers from './pages/Careers';
 import Contact from './pages/Contact';
@@ -42,7 +41,6 @@ function App() {
             {/* Standalone Product & Operations Portals */}
             <Route path="/hrms-demo" element={<HRMSDashboardPage />} />
             <Route path="/hospital-onboarding" element={<HospitalOnboarding />} />
-            <Route path="/hospital-login" element={<HospitalLogin />} />
 
             {/* 404 Fallback */}
             <Route path="*" element={<PageNotFound />} />

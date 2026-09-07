@@ -8,7 +8,7 @@ const perks = [
   {
     icon: TrendingUp,
     title: 'Career Growth',
-    desc: "At SwiftRev Technology Limited, personal mastery is a core commitment. We sponsor certifications and hands-on operational leadership opportunities.",
+    desc: "At SwiftRev And Technology Limited, personal mastery is a core commitment. We sponsor certifications and hands-on operational leadership opportunities.",
   },
   {
     icon: Heart,
@@ -59,7 +59,7 @@ export default function Careers() {
             </h1>
 
             <p className="text-base md:text-lg text-muted-foreground font-body leading-relaxed max-w-lg">
-              Join SwiftRev Technology Limited in solving foundational problems across healthcare revenue, smart POS fintech, and real estate.
+              Join SwiftRev And Technology Limited in solving foundational problems across healthcare revenue, smart POS fintech, and real estate.
             </p>
 
             <div className="pt-2 flex items-center gap-4">
@@ -109,7 +109,7 @@ export default function Careers() {
               Perks &amp; Culture
             </span>
             <h2 className="text-3xl font-heading font-extrabold text-foreground mt-2">
-              Life at SwiftRev Technology Limited
+              Life at SwiftRev And Technology Limited
             </h2>
           </div>
 

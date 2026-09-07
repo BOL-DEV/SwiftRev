@@ -170,7 +170,7 @@ export default function MedicalFinance() {
             <div className="flex items-center gap-3">
               <StatusBadge status="live" size="md" />
               <span className="text-xs font-heading font-semibold uppercase tracking-wider text-muted-foreground">
-                Hospital Revenue Management System (HRMS)
+                Health Revenue Management System (HRMS)
               </span>
             </div>
 
@@ -326,7 +326,7 @@ export default function MedicalFinance() {
             Deploy HRMS in Your Healthcare Facility
           </h2>
           <p className="text-sm md:text-base text-white/80 max-w-xl mx-auto font-body">
-            Schedule an on-site assessment with SwiftRev Technology Limited to review your hospital's billing and dual-tier pharmacy workflows.
+            Schedule an on-site assessment with SwiftRev And Technology Limited to review your hospital's billing and dual-tier pharmacy workflows.
           </p>
           <div className="pt-4 flex justify-center">
             <Link

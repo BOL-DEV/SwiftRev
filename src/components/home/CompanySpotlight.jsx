@@ -12,7 +12,7 @@ export default function CompanySpotlight() {
             {/* Left Story (7 cols) */}
             <div className="lg:col-span-7 space-y-5">
               <span className="inline-flex items-center gap-2 px-3.5 py-1 rounded-full text-xs font-heading font-semibold uppercase tracking-wider bg-pine/10 text-pine dark:text-teal-300 border border-pine/20">
-                About SwiftRev Technology Limited
+                About SwiftRev And Technology Limited
               </span>
 
               <h2 className="text-3xl sm:text-4xl font-heading font-extrabold text-foreground tracking-tight leading-snug">
@@ -24,7 +24,7 @@ export default function CompanySpotlight() {
               </p>
 
               <p className="text-sm md:text-base text-muted-foreground font-body leading-relaxed">
-                Rather than building generic tools, we immerse our engineering and operations teams into target industries — starting with our operational flagship <strong>HRMS</strong> in healthcare facilities, and extending into <strong>real estate technology</strong> and <strong>smart POS devices</strong>.
+                Rather than building generic tools, we immerse our engineering and operations teams into target industries — starting with our operational flagship <strong>HRMS</strong> in healthcare facilities, expanding into clinical <strong>EMR systems</strong>, and extending into <strong>real estate technology</strong> and <strong>smart POS devices</strong>.
               </p>
 
               <div className="pt-2 flex flex-wrap items-center gap-4">

@@ -7,24 +7,40 @@ import StatusBadge from '../shared/StatusBadge';
 const solutions = [
   {
     status: 'live',
-    title: 'HRMS (Hospital Revenue Management System)',
+    title: 'HRMS (Health Revenue Management)',
     category: 'Medical Finance • Live Flagship',
-    desc: 'Our currently operational platform managing hospital billing, cashier desks, and multi-channel reconciliation from patient touchpoints to bank ledgers with zero cash leakage.',
+    desc: 'Our operational platform managing hospital billing, cashier desks, and multi-channel reconciliation from patient touchpoints to bank ledgers with zero cash leakage.',
     features: [
       'Multi-channel reconciliation (Cash, POS, Transfer)',
       'Cashier & field agent shift handover audit',
       'Tamper-proof receipt reprint controls',
       'Automated daily bank settlement sweeps'
     ],
-    link: '/works',
-    linkLabel: 'View HRMS in Our Works',
+    link: '/hrms',
+    linkLabel: 'Explore HRMS Platform',
     accentBorder: 'border-pine/30 dark:border-teal-700/50',
     highlight: true,
   },
   {
+    status: 'planning',
+    title: 'EMR (Electronic Medical Record)',
+    category: 'Clinical HealthTech • In Planning',
+    desc: 'Next-generation clinical workflow and digital patient record system designed to connect clinician consultation charts, lab orders, and pharmacy directly to HRMS billing.',
+    features: [
+      'Longitudinal patient digital charts & vitals',
+      'Direct order sync to HRMS billing desks',
+      'Paperless lab & pharmacy e-prescriptions',
+      'NDPR-compliant role-based chart access'
+    ],
+    link: '/works',
+    linkLabel: 'View EMR Architecture',
+    accentBorder: 'border-blue-300 dark:border-blue-900/60',
+    highlight: false,
+  },
+  {
     status: 'development',
     title: 'SwiftRev Smart POS & Fintech',
-    category: 'Financial Technology • In Development',
+    category: 'Financial Technology • In Dev',
     desc: 'Customized Android POS payment terminals built specifically for hospital cashier desks, consultation points, and retail merchant operations with real-time ledger sync.',
     features: [
       'Encrypted thermal slips with verification QR',
@@ -33,7 +49,7 @@ const solutions = [
       'Automated batch card settlement'
     ],
     link: '/works',
-    linkLabel: 'Explore Pipeline Specs',
+    linkLabel: 'Explore POS Specs',
     accentBorder: 'border-border',
     highlight: false,
   },
@@ -49,7 +65,7 @@ const solutions = [
       'Verified property ownership database'
     ],
     link: '/works',
-    linkLabel: 'Learn More in Our Works',
+    linkLabel: 'Learn More in Works',
     accentBorder: 'border-border',
     highlight: false,
   },
@@ -67,11 +83,11 @@ export default function ServicesOverview() {
             Our Works &amp; Innovation Pipeline
           </h2>
           <p className="mt-4 text-base sm:text-lg text-muted-foreground font-body">
-            SwiftRev Technology Limited develops high-trust infrastructure across three strategic domains.
+            SwiftRev And Technology Limited develops high-trust infrastructure across healthcare operations, clinical records, fintech, and proptech.
           </p>
         </div>
 
-        <div className="grid grid-cols-1 lg:grid-cols-3 gap-8">
+        <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-4 gap-6">
           {solutions.map((item, i) => (
             <motion.div
               key={item.title}

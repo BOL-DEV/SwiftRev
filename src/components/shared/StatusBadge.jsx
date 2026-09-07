@@ -26,6 +26,17 @@ export default function StatusBadge({ status = 'live', size = 'md' }) {
     );
   }
 
+  if (status === 'planning') {
+    return (
+      <span className={`inline-flex items-center gap-1.5 font-heading font-semibold rounded-full bg-blue-50 text-blue-800 border border-blue-200 dark:bg-blue-950/40 dark:text-blue-300 dark:border-blue-800/50 ${
+        size === 'sm' ? 'px-2.5 py-0.5 text-xs' : 'px-3.5 py-1 text-xs md:text-sm'
+      }`}>
+        <span className="inline-flex rounded-full h-2 w-2 bg-blue-500"></span>
+        Under Planning
+      </span>
+    );
+  }
+
   return (
     <span className={`inline-flex items-center gap-1.5 font-heading font-semibold rounded-full bg-slate-100 text-slate-700 border border-slate-200 dark:bg-slate-800 dark:text-slate-300 dark:border-slate-700 ${
       size === 'sm' ? 'px-2.5 py-0.5 text-xs' : 'px-3.5 py-1 text-xs md:text-sm'

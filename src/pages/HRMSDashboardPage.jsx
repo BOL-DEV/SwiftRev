@@ -765,7 +765,7 @@ export default function HRMSDashboardPage() {
                   <input
                     type="text"
                     readOnly
-                    value="SwiftRev Technology Limited"
+                    value="SwiftRev And Technology Limited"
                     className="w-full px-4 py-2.5 rounded-xl border border-slate-200 dark:border-slate-700 bg-slate-50 dark:bg-slate-800 text-slate-700 dark:text-slate-300 text-xs"
                   />
                 </div>

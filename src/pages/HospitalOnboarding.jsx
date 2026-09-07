@@ -103,7 +103,7 @@ export default function HospitalOnboarding() {
           </div>
 
           <p className="text-xs font-semibold tracking-[0.2em] uppercase text-pine dark:text-teal-400 mb-1">
-            SwiftRev Technology Limited
+            SwiftRev And Technology Limited
           </p>
           <h1 className="text-3xl font-extrabold text-foreground font-heading mb-8">Hospital Onboarding</h1>
 

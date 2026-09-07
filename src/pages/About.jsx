@@ -28,7 +28,7 @@ export default function About() {
               <span className="text-pine dark:text-teal-400">Essential Sectors</span>
             </h1>
             <p className="mt-6 text-base md:text-lg text-muted-foreground font-body max-w-2xl mx-auto leading-relaxed">
-              <strong>SwiftRev Technology Limited</strong> is an enterprise technology provider focused on closing inefficiencies in healthcare operations, financial payments, and real estate.
+              <strong>SwiftRev And Technology Limited</strong> is an enterprise technology provider focused on closing inefficiencies in healthcare operations, financial payments, and real estate.
             </p>
           </motion.div>
         </div>
@@ -49,7 +49,7 @@ export default function About() {
                 We founded SwiftRev after witnessing the immense financial strain faced by hospitals due to revenue leaks, manual receipt handling, and uncoordinated billing desks.
               </p>
               <p className="text-sm md:text-base text-muted-foreground font-body leading-relaxed">
-                By building <strong>HRMS (Hospital Revenue Management System)</strong> as our first fully deployed operational solution, we proved that transparent technology can immediately restore financial health to hospitals so clinicians can focus on saving lives.
+                By building <strong>HRMS (Health Revenue Management System)</strong> as our first fully deployed operational solution, we proved that transparent technology can immediately restore financial health to hospitals so clinicians can focus on saving lives.
               </p>
               <div className="pt-2 flex items-center gap-3">
                 <StatusBadge status="live" size="sm" />
@@ -121,7 +121,7 @@ export default function About() {
       {/* CTA */}
       <section className="py-16 text-center max-w-3xl mx-auto px-4">
         <h2 className="text-2xl md:text-3xl font-heading font-extrabold text-foreground">
-          Partner with SwiftRev Technology Limited
+          Partner with SwiftRev And Technology Limited
         </h2>
         <p className="text-sm text-muted-foreground mt-2 font-body">
           Explore our solutions or connect directly with our leadership team.
